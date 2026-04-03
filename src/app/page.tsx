@@ -124,6 +124,7 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-6">
             <a href="#plans" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Plans</a>
+            <a href="/indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Indicators</a>
             <a href="#how-it-works" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>How It Works</a>
             <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all animate-pulse-gold" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>
               Get Access
@@ -315,6 +316,113 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ═══ TAKE THE BRAIN WITH YOU ═══ */}
+      <section className="py-24 border-t" style={{ borderColor: 'var(--qr-border)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 border" style={{ background: 'rgba(75,158,255,0.08)', borderColor: 'rgba(75,158,255,0.2)', color: '#4B9EFF' }}>
+              🔧 PINE SCRIPT™ SOURCE CODE INCLUDED
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4">
+              Take the <span style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF, #d4af37)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Brain</span> With You
+            </h2>
+            <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
+              The same conviction engine powering a live automated portfolio — now running directly on your TradingView chart. Two proprietary indicators. Full source code. Zero black boxes.
+            </p>
+          </div>
+
+          {/* Two indicator cards */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {/* Quant Model Visualizer */}
+            <div className="rounded-2xl border p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1" style={{ background: 'var(--qr-surface)', borderColor: 'var(--qr-border)' }}>
+              <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, #4B9EFF, #4ade80)' }} />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style={{ background: 'rgba(75,158,255,0.12)' }}>📊</div>
+              <h3 className="text-lg font-bold mb-1">Quant Model Visualizer</h3>
+              <p className="text-xs font-bold mb-4 tracking-widest uppercase" style={{ color: '#4B9EFF' }}>On-Chart Overlay</p>
+              <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
+                See exactly where the engine would fire. ATR-scaled trigger zones paint dynamically around price, while the multi-timeframe EMA ribbon confirms trend structure at a glance.
+              </p>
+              <ul className="space-y-2.5">
+                {[
+                  "ATR trigger cloud zones — visible before they fire",
+                  "8/21/34 EMA ribbon with stacked trend detection",
+                  "Real-time BUY arrow signals on conviction alignment",
+                  "Works on any timeframe — 1min to Daily",
+                ].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                    <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Quant Conviction Histogram */}
+            <div className="rounded-2xl border p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1" style={{ background: 'var(--qr-surface)', borderColor: 'var(--qr-border)' }}>
+              <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, #d4af37, #B04BFF)' }} />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style={{ background: 'rgba(212,175,55,0.12)' }}>📈</div>
+              <h3 className="text-lg font-bold mb-1">Quant Conviction Histogram</h3>
+              <p className="text-xs font-bold mb-4 tracking-widest uppercase" style={{ color: 'var(--qr-gold)' }}>Sub-Pane Indicator</p>
+              <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
+                The factor breakdown that powers every signal grade. Watch conviction build bar-by-bar as each independent factor — volume, ATR, gap, catalyst, RSI — fires or fails.
+              </p>
+              <ul className="space-y-2.5">
+                {[
+                  "Composite S/A/B/C/D conviction grade in real time",
+                  "Individual factor decomposition per bar",
+                  "Color-coded intensity: green / yellow / red",
+                  "Alert-compatible — set alerts on thresholds",
+                ].map((f, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                    <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Code Preview */}
+          <div className="rounded-2xl border p-8 mb-12 relative overflow-hidden" style={{ background: '#0a0e1a', borderColor: 'var(--qr-border)' }}>
+            <div className="absolute top-4 right-4 px-3 py-1.5 rounded-md text-[10px] font-bold tracking-widest uppercase" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>
+              Pine Script™ Source Included
+            </div>
+            <pre className="text-xs md:text-sm leading-7 overflow-x-auto" style={{ fontFamily: "'JetBrains Mono', monospace", color: 'var(--qr-text-dim)' }}>
+              <code>{`// Quant Model Visualizer — QuantRead © 2026
+// Full source code — modify freely
+
+`}<span style={{ color: '#4B9EFF' }}>//@version=6</span>{`
+`}<span style={{ color: '#d4af37' }}>indicator</span>{`(`}<span style={{ color: '#4ade80' }}>&quot;Quant Model Visualizer&quot;</span>{`, overlay=`}<span style={{ color: '#4B9EFF' }}>true</span>{`)
+
+`}<span style={{ color: '#444466' }}>// ATR Trigger Cloud</span>{`
+atr_val     = `}<span style={{ color: '#d4af37' }}>ta.atr</span>{`(`}<span style={{ color: '#B04BFF' }}>14</span>{`)
+upper_cloud = open + (atr_val * `}<span style={{ color: '#B04BFF' }}>1.5</span>{`)
+
+`}<span style={{ color: '#444466' }}>// EMA Ribbon (8/21/34)</span>{`
+ema_fast = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>8</span>{`)
+ema_mid  = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>21</span>{`)
+ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>34</span>{`)
+
+`}<span style={{ color: '#d4af37' }}>plotshape</span>{`(score >= `}<span style={{ color: '#B04BFF' }}>0.7</span>{`, style=shape.triangleup,
+         color=`}<span style={{ color: '#d4af37' }}>color.green</span>{`, text=`}<span style={{ color: '#4ade80' }}>&quot;BUY&quot;</span>{`)`}</code>
+            </pre>
+          </div>
+
+          {/* CTA Row */}
+          <div className="text-center">
+            <p className="text-sm mb-4" style={{ color: 'var(--qr-text-dim)' }}>
+              Available standalone for <strong style={{ color: '#4ade80' }}>$49 one-time</strong> — or included free with the Pro Bundle ($49/mo)
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="/indicators" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
+                View Full Indicator Page <IconArrowRight />
+              </a>
+              <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
+                Get Pro Bundle (includes both)
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ FAQ ═══ */}
       <section className="py-24 border-t" style={{ borderColor: 'var(--qr-border)', background: 'var(--qr-surface)' }}>
         <div className="max-w-3xl mx-auto px-6">
@@ -324,8 +432,9 @@ export default function LandingPage() {
               { q: "Do I need a Schwab account?", a: "No. QuantRead subscriptions deliver pure intelligence and signals via Telegram. You can use any broker to act on them." },
               { q: "How fast are the alerts?", a: "Alerts are delivered in under 1 second from the moment the engine scores the setup. You see the signal before the order fills." },
               { q: "Can I cancel anytime?", a: "Yes. All plans are month-to-month via Stripe. Cancel with one click, no questions asked." },
-              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Included with the Pro Bundle." },
+              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Available as a standalone purchase or included with the Pro Bundle." },
               { q: "Is this a signal room or Discord?", a: "No. QuantRead is a gated Telegram channel connected to a live execution engine. There is no chat, no noise, no hype — just structured data and actionable signals." },
+              { q: "Can I modify the Pine Script?", a: "Yes. You receive the full, unobfuscated source code. Change parameters, add rules, combine with your own scripts — it's yours." },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl border" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.6)' }}>
                 <h3 className="text-base font-bold mb-2">{item.q}</h3>
