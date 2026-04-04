@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 /* ─── SVG Icons (inline, no dependencies) ─────────────────────────────────── */
 const IconSignal = () => (
@@ -106,6 +106,84 @@ const stats = [
   { value: "24/5", label: "Market Coverage" },
   { value: "100%", label: "Automated Risk" },
 ];
+
+/* ─── Email Capture Component ─────────────────────────────────────────────── */
+function EmailCapture() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) return;
+    setStatus('loading');
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <section className="py-20 border-t" style={{ borderColor: 'var(--qr-border)' }}>
+      <div className="max-w-2xl mx-auto px-6 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 border" style={{ background: 'rgba(212,175,55,0.08)', borderColor: 'rgba(212,175,55,0.2)', color: 'var(--qr-gold)' }}>
+          📬 FREE PRE-MARKET INTEL
+        </div>
+        <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-3">
+          Get a Taste Before You Commit
+        </h2>
+        <p className="text-sm mb-8 max-w-md mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
+          Drop your email and we&apos;ll send you a free sample of the pre-market gap scanner output — the same data our subscribers see every morning before the bell.
+        </p>
+
+        {status === 'success' ? (
+          <div className="flex items-center justify-center gap-2 p-4 rounded-xl border" style={{ background: 'rgba(74,222,128,0.08)', borderColor: 'rgba(74,222,128,0.25)', color: '#4ade80' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+            <span className="text-sm font-semibold">You&apos;re in! Check your inbox.</span>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              required
+              className="flex-1 w-full px-5 py-3.5 rounded-xl text-sm font-medium outline-none transition-all focus:ring-2"
+              style={{ background: 'var(--qr-surface)', border: '1px solid var(--qr-border)', color: 'var(--qr-text)', focusRingColor: 'var(--qr-gold)' } as React.CSSProperties}
+            />
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="px-6 py-3.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap"
+              style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)', opacity: status === 'loading' ? 0.6 : 1 }}
+            >
+              {status === 'loading' ? 'Sending...' : 'Send Me a Sample'}
+            </button>
+          </form>
+        )}
+
+        {status === 'error' && (
+          <p className="mt-3 text-xs" style={{ color: 'rgba(239,68,68,0.7)' }}>Something went wrong. Try again.</p>
+        )}
+
+        <p className="mt-4 text-xs" style={{ color: 'var(--qr-text-dim)' }}>
+          No spam. Unsubscribe anytime. We respect your inbox.
+        </p>
+      </div>
+    </section>
+  );
+}
 
 /* ─── Page Component ──────────────────────────────────────────────────────── */
 export default function LandingPage() {
@@ -454,6 +532,9 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
           </div>
         </div>
       </section>
+
+      {/* ═══ EMAIL CAPTURE ═══ */}
+      <EmailCapture />
 
       {/* ═══ FINAL CTA ═══ */}
       <section className="py-24 relative overflow-hidden">
