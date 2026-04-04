@@ -18,6 +18,7 @@ const IconArrowRight = () => (
 /* ─── Metadata handled via layout or head ─────────────────────────────────── */
 export default function IndicatorsPage() {
   const membershipUrl = "https://im.page/quantread";
+  const indicatorCheckoutUrl = "https://buy.stripe.com/bJeaERf4qaLUesb8yE3AY03";
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: 'var(--font-inter), Inter, sans-serif' }}>
@@ -33,7 +34,7 @@ export default function IndicatorsPage() {
             <a href="/" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Home</a>
             <a href="#indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Indicators</a>
             <a href="#pricing" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Pricing</a>
-            <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff' }}>
+            <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff' }}>
               Get Access
             </a>
           </div>
@@ -58,7 +59,7 @@ export default function IndicatorsPage() {
           </p>
 
           <div className="animate-fade-in-up-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
+            <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
               Get the Indicator Suite →
             </a>
             <a href="#indicators" className="flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
@@ -69,6 +70,16 @@ export default function IndicatorsPage() {
           <p className="mt-6 text-sm" style={{ fontFamily: "'JetBrains Mono', monospace", color: 'var(--qr-text-dim)' }}>
             One-time purchase: <strong style={{ color: '#4ade80', fontSize: '1.1rem' }}>$49</strong> &nbsp;·&nbsp; or included free with Pro Bundle ($49/mo)
           </p>
+
+          {/* Chart Preview */}
+          <div className="mt-16 max-w-4xl mx-auto rounded-2xl border overflow-hidden" style={{ borderColor: 'var(--qr-border)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b" style={{ background: '#0b1229', borderColor: 'var(--qr-border)' }}>
+              <span className="text-xs font-medium" style={{ color: 'var(--qr-text-dim)' }}>WMT · 1m · NYSE</span>
+              <span className="ml-auto px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>QUANT v2 ACTIVE</span>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/chart_preview.png" alt="Quant v2 indicators running on WMT 1-minute chart showing ATR trigger zones, EMA ribbon, and BUY signal" className="w-full h-auto" />
+          </div>
         </div>
       </section>
 
@@ -295,7 +306,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
                 ))}
               </ul>
 
-              <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
+              <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
                 Get Instant Access <IconArrowRight />
               </a>
             </div>
@@ -336,7 +347,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
           <p className="text-base mb-10 max-w-lg mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
             Get the same conviction scoring system used by a live trading portfolio. Full Pine Script source code included.
           </p>
-          <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-5 rounded-xl text-lg font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.3)' }}>
+          <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-5 rounded-xl text-lg font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.3)' }}>
             Get Instant Access <IconArrowRight />
           </a>
         </div>

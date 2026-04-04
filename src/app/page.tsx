@@ -331,6 +331,16 @@ export default function LandingPage() {
             </p>
           </div>
 
+          {/* Chart Preview */}
+          <div className="mb-16 rounded-2xl border overflow-hidden" style={{ borderColor: 'var(--qr-border)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b" style={{ background: '#0b1229', borderColor: 'var(--qr-border)' }}>
+              <span className="text-xs font-medium" style={{ color: 'var(--qr-text-dim)' }}>WMT · 1m · NYSE</span>
+              <span className="ml-auto px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>QUANT v2 ACTIVE</span>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/chart_preview.png" alt="Quant v2 indicators running on WMT 1-minute chart showing ATR trigger zones, EMA ribbon, and BUY signal" className="w-full h-auto" />
+          </div>
+
           {/* Two indicator cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-12">
             {/* Quant Model Visualizer */}
