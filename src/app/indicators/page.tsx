@@ -19,7 +19,7 @@ const IconArrowRight = () => (
 export default function IndicatorsPage() {
   const membershipUrl = "https://im.page/quantread";
   const indicatorCheckoutUrl = "https://buy.stripe.com/bJeaERf4qaLUesb8yE3AY03";
-  const tickerGraderProUrl = "https://buy.stripe.com/TICKER_GRADER_PRO_PLACEHOLDER"; // TODO: Replace with real Stripe payment link
+  const tickerGraderProUrl = "https://buy.stripe.com/5kQfZb1dA8DM97R4io3AY04";
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: 'var(--font-inter), Inter, sans-serif' }}>
