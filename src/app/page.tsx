@@ -202,8 +202,9 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-6">
             <a href="#plans" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Plans</a>
+            <a href="https://quantread-ticker-grader.onrender.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Ticker Grader</a>
+            <a href="https://quantread-position-sizer.onrender.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Position Sizer</a>
             <a href="/indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Indicators</a>
-            <a href="#how-it-works" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>How It Works</a>
             <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all animate-pulse-gold" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>
               Get Access
             </a>
@@ -394,6 +395,73 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ═══ FREE PROFESSIONAL TOOLS ═══ */}
+      <section className="py-24 border-t" style={{ borderColor: 'var(--qr-border)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 border" style={{ background: 'rgba(74,222,128,0.08)', borderColor: 'rgba(74,222,128,0.2)', color: '#4ade80' }}>
+              🔓 FREE — NO SIGNUP REQUIRED
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Professional Trading Utilities</h2>
+            <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
+              Two standalone tools built on the same math as our live trading system. Use them unlimited, forever, for free.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Ticker Grader */}
+            <a href="https://quantread-ticker-grader.onrender.com" target="_blank" rel="noopener noreferrer" className="group rounded-2xl border p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30" style={{ background: 'var(--qr-surface)', borderColor: 'var(--qr-border)' }}>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent pointer-events-none" />
+              <div className="relative">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style={{ background: 'rgba(34,211,238,0.12)' }}>📊</div>
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-xl font-bold">Ticker Grader</h3>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>FREE</span>
+                </div>
+                <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
+                  Instant conviction scoring for any stock. Enter a ticker and get an institutional-grade A-F letter grade powered by 6 factors: EMA Ribbon, RVOL, RSI, ATR, Momentum, and Trend.
+                </p>
+                <ul className="space-y-2">
+                  {['Real-time data from live markets', 'Same scoring model as our trading bot', 'No signup, no email, no limits'].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                      <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex items-center gap-2 text-sm font-semibold transition-colors" style={{ color: '#22d3ee' }}>
+                  Grade a Stock Now <span className="transition-transform group-hover:translate-x-1"><IconArrowRight /></span>
+                </div>
+              </div>
+            </a>
+
+            {/* Position Sizer */}
+            <a href="https://quantread-position-sizer.onrender.com" target="_blank" rel="noopener noreferrer" className="group rounded-2xl border p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/30" style={{ background: 'var(--qr-surface)', borderColor: 'var(--qr-border)' }}>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-violet-500/10 to-transparent pointer-events-none" />
+              <div className="relative">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style={{ background: 'rgba(167,139,250,0.12)' }}>🎯</div>
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-xl font-bold">Position Sizer</h3>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>FREE</span>
+                </div>
+                <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
+                  Calculate exactly how many shares to buy for any stock. Uses real-time ATR volatility to set your stop, target, and position size — the same math our live bot uses before every trade.
+                </p>
+                <ul className="space-y-2">
+                  {['ATR-based stop loss and profit target', 'Visual risk exposure meter', 'Same risk engine as our trading system'].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                      <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex items-center gap-2 text-sm font-semibold transition-colors" style={{ color: '#a78bfa' }}>
+                  Size a Trade Now <span className="transition-transform group-hover:translate-x-1"><IconArrowRight /></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ TAKE THE BRAIN WITH YOU ═══ */}
       <section className="py-24 border-t" style={{ borderColor: 'var(--qr-border)' }}>
         <div className="max-w-6xl mx-auto px-6">
@@ -506,6 +574,66 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
               <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
                 Get Pro Bundle (includes both)
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ INSTITUTIONAL LICENSE (PRICE ANCHOR) ═══ */}
+      <section className="py-24 border-t" style={{ borderColor: 'var(--qr-border)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="rounded-2xl border relative overflow-hidden" style={{ borderColor: 'rgba(212,175,55,0.3)', background: 'linear-gradient(180deg, rgba(212,175,55,0.06) 0%, var(--qr-surface) 100%)' }}>
+            {/* Gold top border */}
+            <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: 'linear-gradient(90deg, transparent, #d4af37, transparent)' }} />
+
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Left — Image */}
+              <div className="relative min-h-[400px] overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/institutional_dashboard.png" alt="QuantRead Institutional Trading System" className="absolute inset-0 w-full h-full object-cover" style={{ opacity: 0.7 }} />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent, var(--qr-surface))' }} />
+              </div>
+
+              {/* Right — Content */}
+              <div className="p-10 md:p-12 flex flex-col justify-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 border w-fit" style={{ background: 'rgba(212,175,55,0.08)', borderColor: 'rgba(212,175,55,0.25)', color: 'var(--qr-gold)' }}>
+                  👑 INSTITUTIONAL LICENSE
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
+                  The Full <span style={{ color: 'var(--qr-gold)' }}>Autonomous System</span>
+                </h2>
+
+                <div className="flex items-baseline gap-2 mb-6">
+                  <span className="text-5xl font-black" style={{ color: 'var(--qr-gold)' }}>$30,000</span>
+                  <span className="text-sm" style={{ color: 'var(--qr-text-dim)' }}>one-time setup</span>
+                </div>
+
+                <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
+                  A private deployment of the complete QuantRead execution engine — the same system that scans 57 symbols, scores conviction across 12 factors, and executes bracket orders autonomously via the Schwab API. Installed on your own infrastructure. Tuned to your account.
+                </p>
+
+                <ul className="space-y-3 mb-8">
+                  {[
+                    'Complete source code — Python bot, Pine Scripts, dashboard',
+                    '1-on-1 deployment to your private VPS',
+                    'Schwab API integration and live calibration',
+                    'Custom universe and risk parameters for your account',
+                    '90 days of direct support and system tuning',
+                    'Full architecture documentation and runbooks',
+                  ].map((f, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                      <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a href="mailto:quantreadapp@gmail.com?subject=Institutional%20License%20Inquiry" className="inline-flex items-center justify-center gap-2 w-full py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #d4af37, #b8860b)', color: '#000', boxShadow: '0 8px 30px rgba(212,175,55,0.25)' }}>
+                  Inquire About Institutional Access
+                  <IconArrowRight />
+                </a>
+                <p className="text-xs mt-3 text-center" style={{ color: 'var(--qr-text-dim)' }}>Limited availability. Serious inquiries only.</p>
+              </div>
             </div>
           </div>
         </div>
