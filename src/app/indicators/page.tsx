@@ -19,6 +19,7 @@ const IconArrowRight = () => (
 export default function IndicatorsPage() {
   const membershipUrl = "https://im.page/quantread";
   const indicatorCheckoutUrl = "https://buy.stripe.com/bJeaERf4qaLUesb8yE3AY03";
+  const tickerGraderProUrl = "https://buy.stripe.com/TICKER_GRADER_PRO_PLACEHOLDER"; // TODO: Replace with real Stripe payment link
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: 'var(--font-inter), Inter, sans-serif' }}>
@@ -33,6 +34,7 @@ export default function IndicatorsPage() {
           <div className="flex items-center gap-6">
             <a href="/" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Home</a>
             <a href="#indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Indicators</a>
+            <a href="#ticker-grader-pro" className="text-sm font-medium transition-colors" style={{ color: '#d4af37' }}>Ticker Grader Pro</a>
             <a href="#pricing" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Pricing</a>
             <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff' }}>
               Get Access
@@ -268,48 +270,93 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
 
       {/* ═══ PRICING ═══ */}
       <section id="pricing" className="py-24">
-        <div className="max-w-xl mx-auto px-6">
-          <div className="text-center mb-4">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
             <p className="text-xs font-bold tracking-[3px] uppercase mb-3" style={{ color: 'var(--qr-text-dim)' }}>Pricing</p>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Choose Your Edge</h2>
+            <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
+              Two ways to access the conviction engine. One-time indicators for your chart, or unlimited AI-powered grading for any stock.
+            </p>
           </div>
 
-          <div className="rounded-2xl border p-10 text-center relative overflow-hidden" style={{ borderColor: 'rgba(75,158,255,0.25)', background: 'var(--qr-surface)' }}>
-            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(75,158,255,0.06) 0%, transparent 70%)' }} />
+          <div className="grid md:grid-cols-2 gap-6 items-start">
 
-            <div className="relative">
-              <div className="inline-block px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 border" style={{ background: 'rgba(74,222,128,0.08)', borderColor: 'rgba(74,222,128,0.25)', color: '#4ade80' }}>
-                Founding Member Price
+            {/* ── Indicator Suite ($49 one-time) ── */}
+            <div className="rounded-2xl border p-10 text-center relative overflow-hidden" style={{ borderColor: 'var(--qr-border)', background: 'var(--qr-surface)' }}>
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(75,158,255,0.04) 0%, transparent 70%)' }} />
+
+              <div className="relative">
+                <h3 className="text-xl font-black mb-2">Indicator Suite</h3>
+                <p className="text-sm mb-6" style={{ color: 'var(--qr-text-muted)' }}>Pine Script™ indicators for your TradingView chart</p>
+
+                <div className="mb-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                  <span className="text-lg align-top" style={{ color: '#4ade80' }}>$</span>
+                  <span className="text-5xl font-black">49</span>
+                  <span className="text-lg ml-2" style={{ color: 'var(--qr-text-dim)' }}>one-time</span>
+                </div>
+                <p className="text-xs mb-8" style={{ color: 'var(--qr-text-dim)' }}>Pay once, use forever</p>
+
+                <ul className="text-left space-y-3 mb-10 max-w-sm mx-auto">
+                  {[
+                    "Quant Model Visualizer (on-chart overlay)",
+                    "Quant Conviction Histogram (sub-pane)",
+                    "Full Pine Script™ source code — unobfuscated",
+                    "Lifetime updates as the engine evolves",
+                    "Any symbol, any timeframe, any broker",
+                  ].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                      <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all border" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)', background: 'transparent' }}>
+                  Get Indicator Suite <IconArrowRight />
+                </a>
               </div>
-
-              <h3 className="text-2xl font-black mb-2">QuantRead Indicator Suite</h3>
-              <p className="text-sm mb-6" style={{ color: 'var(--qr-text-muted)' }}>Both indicators + full Pine Script source code</p>
-
-              <div className="mb-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                <span className="text-lg align-top" style={{ color: '#4ade80' }}>$</span>
-                <span className="text-6xl font-black">49</span>
-                <span className="text-lg ml-2" style={{ color: 'var(--qr-text-dim)' }}>one-time</span>
-              </div>
-              <p className="text-xs mb-8" style={{ color: 'var(--qr-text-dim)' }}>Or included free with the Pro Bundle ($49/mo)</p>
-
-              <ul className="text-left space-y-3 mb-10 max-w-sm mx-auto">
-                {[
-                  "Quant Model Visualizer (on-chart overlay)",
-                  "Quant Conviction Histogram (sub-pane)",
-                  "Full Pine Script™ source code — unobfuscated",
-                  "Lifetime updates as the engine evolves",
-                  "Works on any TradingView plan (Free, Plus, Premium)",
-                  "Use on any symbol, any timeframe, any broker",
-                ].map((f, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
-                    <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
-                  </li>
-                ))}
-              </ul>
-
-              <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
-                Get Instant Access <IconArrowRight />
-              </a>
             </div>
+
+            {/* ── Ticker Grader Pro ($14.99/mo) ── */}
+            <div id="ticker-grader-pro" className="rounded-2xl border p-10 text-center relative overflow-hidden" style={{ borderColor: 'rgba(212,175,55,0.35)', background: 'var(--qr-surface)', boxShadow: '0 0 40px rgba(212,175,55,0.06)' }}>
+              <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: 'linear-gradient(90deg, #d4af37, #B04BFF, #4B9EFF)' }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 70%)' }} />
+
+              <div className="relative">
+                <div className="inline-block px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase mb-6 border" style={{ background: 'rgba(212,175,55,0.08)', borderColor: 'rgba(212,175,55,0.25)', color: '#d4af37' }}>
+                  Most Popular
+                </div>
+
+                <h3 className="text-xl font-black mb-2">Ticker Grader Pro</h3>
+                <p className="text-sm mb-6" style={{ color: 'var(--qr-text-muted)' }}>Unlimited AI-powered conviction scores for any stock</p>
+
+                <div className="mb-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                  <span className="text-lg align-top" style={{ color: '#d4af37' }}>$</span>
+                  <span className="text-5xl font-black">14</span>
+                  <span className="text-2xl font-black align-top">.99</span>
+                  <span className="text-lg ml-2" style={{ color: 'var(--qr-text-dim)' }}>/mo</span>
+                </div>
+                <p className="text-xs mb-8" style={{ color: 'var(--qr-text-dim)' }}>Cancel anytime · Save 45% with annual ($99/yr)</p>
+
+                <ul className="text-left space-y-3 mb-10 max-w-sm mx-auto">
+                  {[
+                    "Unlimited conviction grades — no daily cap",
+                    "Full 6-factor indicator breakdown (EMA, RVOL, RSI, ATR, Momentum, Trend)",
+                    "Trading style guide (Day Trader / Scalper / Swing)",
+                    "Priority API — faster grade responses",
+                    "Includes Indicator Suite free ($49 value)",
+                  ].map((f, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
+                      <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
+                    </li>
+                  ))}
+                </ul>
+
+                <a href={tickerGraderProUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #d4af37, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(212,175,55,0.25)' }}>
+                  Start Grading Unlimited <IconArrowRight />
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -325,7 +372,8 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
               { q: "Is this the same system that runs the live portfolio?", a: "The indicators are a visual representation of the core conviction factors (ATR cloud, EMA ribbon, volume, RSI). The live engine includes additional server-side factors like options flow and news catalysts." },
               { q: "How is this different from QuantRead Alerts?", a: "Alerts ($29/mo) push signals to Telegram. The Indicator Suite puts the visual scoring on your own chart so you can see setups forming, confirm alerts, or trade independently. Many use both." },
               { q: "What if I already have the Pro Bundle?", a: "The Indicator Suite is included free with Pro Bundle ($49/mo). No additional purchase needed." },
-              { q: "Can I get a refund?", a: "Because source code is involved, refunds are handled case-by-case within 7 days. If you have issues, reach out and we'll help." },
+              { q: "Can I get a refund?", a: "Because source code is involved, Indicator Suite refunds are handled case-by-case within 7 days. Ticker Grader Pro subscriptions can be cancelled anytime from your account — no refund needed, just stop billing." },
+              { q: "What's the difference between the Indicator Suite and Ticker Grader Pro?", a: "The Indicator Suite ($49 one-time) gives you Pine Script indicators to run on your own TradingView chart. Ticker Grader Pro ($14.99/mo) gives you unlimited access to our web-based AI grading tool — enter any ticker and get an instant conviction score with a full 6-factor breakdown. Pro subscribers also get the Indicator Suite included free." },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl border" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.6)' }}>
                 <h3 className="text-base font-bold mb-2">{item.q}</h3>
@@ -338,18 +386,23 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
 
       {/* ═══ FINAL CTA ═══ */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(75,158,255,0.08) 0%, transparent 70%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 70%)' }} />
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
             See what the engine sees.{' '}
-            <span style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF, #d4af37)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>On your chart.</span>
+            <span style={{ background: 'linear-gradient(135deg, #d4af37, #B04BFF, #4B9EFF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Your way.</span>
           </h2>
           <p className="text-base mb-10 max-w-lg mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-            Get the same conviction scoring system used by a live trading portfolio. Full Pine Script source code included.
+            Chart-level indicators or instant web grades — choose the interface that fits your workflow.
           </p>
-          <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-5 rounded-xl text-lg font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.3)' }}>
-            Get Instant Access <IconArrowRight />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all border" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)', background: 'transparent' }}>
+              Indicator Suite — $49 <IconArrowRight />
+            </a>
+            <a href={tickerGraderProUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #d4af37, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(212,175,55,0.25)' }}>
+              Ticker Grader Pro — $14.99/mo <IconArrowRight />
+            </a>
+          </div>
         </div>
       </section>
 
