@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     "TradingView indicators",
     "quantitative trading",
   ],
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "QuantRead — Intelligence for Modern Traders",
     description:
