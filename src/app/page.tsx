@@ -565,14 +565,14 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
           {/* CTA Row */}
           <div className="text-center">
             <p className="text-sm mb-4" style={{ color: 'var(--qr-text-dim)' }}>
-              Available standalone for <strong style={{ color: '#4ade80' }}>$49 one-time</strong> — or included free with the Pro Bundle ($49/mo)
+              Both indicators included with the <strong style={{ color: '#4ade80' }}>Pro Bundle — $49/mo</strong>
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="/indicators" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
-                View Full Indicator Page <IconArrowRight />
+              <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
+                Get the Pro Bundle <IconArrowRight />
               </a>
-              <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
-                Get Pro Bundle (includes both)
+              <a href="/indicators" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
+                View Full Indicator Details
               </a>
             </div>
           </div>
@@ -648,9 +648,9 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
               { q: "Do I need a Schwab account?", a: "No. QuantRead subscriptions deliver pure intelligence and signals via Telegram. You can use any broker to act on them." },
               { q: "How fast are the alerts?", a: "Alerts are delivered in under 1 second from the moment the engine scores the setup. You see the signal before the order fills." },
               { q: "Can I cancel anytime?", a: "Yes. All plans are month-to-month via Stripe. Cancel with one click, no questions asked." },
-              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Available as a standalone purchase or included with the Pro Bundle." },
+              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Included with the Pro Bundle subscription." },
               { q: "Is this a signal room or Discord?", a: "No. QuantRead is a gated Telegram channel connected to a live execution engine. There is no chat, no noise, no hype — just structured data and actionable signals." },
-              { q: "Can I modify the Pine Script?", a: "Yes. You receive the full, unobfuscated source code. Change parameters, add rules, combine with your own scripts — it's yours." },
+              { q: "Can I modify the Pine Script?", a: "Yes. Pro Bundle subscribers receive the full source code. Change parameters, add rules, combine with your own scripts — it's yours for as long as you're subscribed." },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl border" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.6)' }}>
                 <h3 className="text-base font-bold mb-2">{item.q}</h3>
