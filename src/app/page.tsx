@@ -43,61 +43,62 @@ const IconTelegram = () => (
 /* ─── Plan Data ───────────────────────────────────────────────────────────── */
 const plans = [
   {
-    name: "QuantRead Alerts",
-    price: "$29",
+    name: "Ticker Grader Pro",
+    price: "$14.99",
     period: "/month",
     icon: <IconSignal />,
     accent: "from-cyan-500/20 to-cyan-500/5",
     borderAccent: "hover:border-cyan-500/30",
     iconColor: "text-cyan-400",
     features: [
-      "Real-time trade signals via Telegram",
-      "Entry, stop-loss, and target on every trade",
-      "Conviction grade (S/A/B/C/D) rating",
-      "Same signals the algo executes",
+      "Unlimited conviction grades — no daily cap",
+      "Full 6-factor breakdown (EMA, RVOL, RSI, ATR, Momentum, Trend)",
+      "Trading style guide (Day Trader / Scalper / Swing)",
+      "Pine Script™ indicator suite included",
     ],
-    best: "Active traders who want actionable signals",
+    best: "Traders who want institutional-grade stock analysis",
   },
   {
-    name: "QuantRead Intelligence",
-    price: "$29",
+    name: "TG Pro + Live Feed",
+    price: "$29.99",
     period: "/month",
     icon: <IconBrain />,
     accent: "from-violet-500/20 to-violet-500/5",
     borderAccent: "hover:border-violet-500/30",
     iconColor: "text-violet-400",
+    popular: true,
     features: [
-      "Daily pre-market brief via Telegram",
-      "Gap analysis and volume rankings",
-      "ATR-based trigger levels for the session",
-      "Catalyst and earnings event flags",
+      "Everything in Ticker Grader Pro",
+      "Real-time trade entries & exits via Telegram",
+      "Daily pre-market AI intelligence briefs",
+      "Live danger alerts (RSI, RVOL, Ichimoku)",
+      "Watch an autonomous system trade in real time",
     ],
-    best: "Traders who want institutional-grade prep",
+    best: "Active traders who want live system transparency",
   },
   {
-    name: "QuantRead Pro Bundle",
+    name: "Pine Script Suite",
     price: "$49",
-    period: "/month",
+    period: "one-time",
     icon: <IconDiamond />,
     accent: "from-amber-500/20 to-amber-500/5",
     borderAccent: "hover:border-amber-500/30",
     iconColor: "text-amber-400",
-    popular: true,
     features: [
-      "Everything in Alerts + Intelligence",
       "2 proprietary TradingView indicators",
       "Quant Model Visualizer (on-chart overlay)",
       "Quant Conviction Histogram (sub-pane)",
-      "Pine Script source code included",
+      "Full Pine Script™ source code — unobfuscated",
+      "Any symbol, any timeframe, any broker",
     ],
-    best: "Serious traders who want the complete toolkit",
+    best: "Chart-first traders who prefer owning the code outright",
   },
 ];
 
 const steps = [
-  { num: "01", title: "Choose Your Plan", desc: "Select Alerts, Intelligence, or Pro Bundle based on your trading style." },
-  { num: "02", title: "Subscribe via Stripe", desc: "Secure checkout. Cancel anytime. No contracts, no hidden fees." },
-  { num: "03", title: "Get Telegram Access", desc: "Instantly receive a private invite link to your gated Telegram channel." },
+  { num: "01", title: "Start Free", desc: "Use the Ticker Grader and Position Sizer with no signup. See the engine's conviction scores on real stocks." },
+  { num: "02", title: "Go Pro", desc: "Subscribe to Ticker Grader Pro for unlimited grades, full breakdown, and the Pine Script indicator suite." },
+  { num: "03", title: "Get the Live Feed", desc: "Upgrade to see every trade the engine makes in real time — entries, exits, and morning briefs delivered to Telegram." },
 ];
 
 const stats = [
@@ -275,7 +276,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Choose Your Edge</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              Three tiers designed for different trading styles. All plans deliver via Telegram with instant access after payment.
+              A simple ladder — start free, go Pro for unlimited analysis, or add the Live Feed to watch the system trade in real time.
             </p>
           </div>
 
@@ -565,11 +566,11 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
           {/* CTA Row */}
           <div className="text-center">
             <p className="text-sm mb-4" style={{ color: 'var(--qr-text-dim)' }}>
-              Both indicators included with the <strong style={{ color: '#4ade80' }}>Pro Bundle — $49/mo</strong>
+              Both indicators included with <strong style={{ color: '#4ade80' }}>Ticker Grader Pro — $14.99/mo</strong> &nbsp;or&nbsp; <strong style={{ color: '#d4af37' }}>$49 one-time purchase</strong>
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
-                Get the Pro Bundle <IconArrowRight />
+                Get Ticker Grader Pro <IconArrowRight />
               </a>
               <a href="/indicators" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
                 View Full Indicator Details
@@ -648,9 +649,9 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
               { q: "Do I need a Schwab account?", a: "No. QuantRead subscriptions deliver pure intelligence and signals via Telegram. You can use any broker to act on them." },
               { q: "How fast are the alerts?", a: "Alerts are delivered in under 1 second from the moment the engine scores the setup. You see the signal before the order fills." },
               { q: "Can I cancel anytime?", a: "Yes. All plans are month-to-month via Stripe. Cancel with one click, no questions asked." },
-              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Included with the Pro Bundle subscription." },
-              { q: "Is this a signal room or Discord?", a: "No. QuantRead is a gated Telegram channel connected to a live execution engine. There is no chat, no noise, no hype — just structured data and actionable signals." },
-              { q: "Can I modify the Pine Script?", a: "Yes. Pro Bundle subscribers receive the full source code. Change parameters, add rules, combine with your own scripts — it's yours for as long as you're subscribed." },
+              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Included with all paid subscriptions and available as a $49 one-time purchase." },
+              { q: "What is the Live Feed?", a: "A real-time transparency window into our autonomous trading engine. Watch every trade it makes — entries, exits, morning briefs, and danger alerts — delivered to your Telegram. This is NOT investment advice; it's a live view of how a quantitative system operates." },
+              { q: "Can I modify the Pine Script?", a: "Yes. You receive the full, unobfuscated source code. Change parameters, add rules, combine with your own scripts — it's yours." },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl border" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.6)' }}>
                 <h3 className="text-base font-bold mb-2">{item.q}</h3>

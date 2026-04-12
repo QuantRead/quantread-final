@@ -70,7 +70,7 @@ export default function IndicatorsPage() {
           </div>
 
           <p className="mt-6 text-sm" style={{ fontFamily: "'JetBrains Mono', monospace", color: 'var(--qr-text-dim)' }}>
-            One-time purchase: <strong style={{ color: '#4ade80', fontSize: '1.1rem' }}>$49</strong> &nbsp;·&nbsp; or included free with Pro Bundle ($49/mo)
+            One-time purchase: <strong style={{ color: '#4ade80', fontSize: '1.1rem' }}>$49</strong> &nbsp;·&nbsp; or included with <strong style={{ color: '#d4af37' }}>Ticker Grader Pro ($14.99/mo)</strong>
           </p>
 
           {/* Chart Preview */}
@@ -273,9 +273,9 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-xs font-bold tracking-[3px] uppercase mb-3" style={{ color: 'var(--qr-text-dim)' }}>Pricing</p>
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Choose Your Edge</h2>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Two Ways to Access</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              Two ways to access the conviction engine. One-time indicators for your chart, or unlimited AI-powered grading for any stock.
+              Buy the indicators outright for $49, or get them included with Ticker Grader Pro alongside unlimited AI-powered conviction scores.
             </p>
           </div>
 
@@ -343,7 +343,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
                     "Full 6-factor indicator breakdown (EMA, RVOL, RSI, ATR, Momentum, Trend)",
                     "Trading style guide (Day Trader / Scalper / Swing)",
                     "Priority API — faster grade responses",
-                    "Includes Indicator Suite free ($49 value)",
+                    "Pine Script™ indicator suite included",
                   ].map((f, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
                       <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
@@ -370,10 +370,10 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
               { q: "Do I need a paid TradingView plan?", a: "No. Both indicators work on TradingView's free plan. However, free plans are limited to 2 indicators per chart — you may want Plus ($14.95/mo) for unlimited." },
               { q: "Can I modify the Pine Script code?", a: "Yes. You receive the full, unobfuscated source code. Change parameters, add rules, combine with your own scripts — it's yours. The only restriction is redistribution or resale." },
               { q: "Is this the same system that runs the live portfolio?", a: "The indicators are a visual representation of the core conviction factors (ATR cloud, EMA ribbon, volume, RSI). The live engine includes additional server-side factors like options flow and news catalysts." },
-              { q: "How is this different from QuantRead Alerts?", a: "Alerts ($29/mo) push signals to Telegram. The Indicator Suite puts the visual scoring on your own chart so you can see setups forming, confirm alerts, or trade independently. Many use both." },
-              { q: "What if I already have the Pro Bundle?", a: "The Indicator Suite is included free with Pro Bundle ($49/mo). No additional purchase needed." },
-              { q: "Can I get a refund?", a: "Because source code is involved, Indicator Suite refunds are handled case-by-case within 7 days. Ticker Grader Pro subscriptions can be cancelled anytime from your account — no refund needed, just stop billing." },
-              { q: "What's the difference between the Indicator Suite and Ticker Grader Pro?", a: "The Indicator Suite ($49 one-time) gives you Pine Script indicators to run on your own TradingView chart. Ticker Grader Pro ($14.99/mo) gives you unlimited access to our web-based AI grading tool — enter any ticker and get an instant conviction score with a full 6-factor breakdown. Pro subscribers also get the Indicator Suite included free." },
+              { q: "What's the difference between buying once vs. subscribing?", a: "The $49 one-time purchase gets you the Pine Script indicators only. Ticker Grader Pro ($14.99/mo) gets you the same indicators PLUS unlimited AI conviction grades for any stock. Both include the full source code." },
+              { q: "What is the Live Feed add-on?", a: "For $29.99/mo you get everything in Ticker Grader Pro plus a real-time transparency window into the autonomous trading engine — watch every entry, exit, morning brief, and danger alert via Telegram." },
+              { q: "What happens to the indicators if I cancel my subscription?", a: "The Pine Script code you received stays on your chart. However, you'll lose access to the Ticker Grader web tool, future indicator updates, and the Live Feed." },
+              { q: "Can I get a refund?", a: "Subscriptions can be cancelled anytime from your Stripe account — no refund needed, just stop billing. One-time indicator purchases are handled case-by-case within 7 days since source code is involved." },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl border" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.6)' }}>
                 <h3 className="text-base font-bold mb-2">{item.q}</h3>
@@ -396,11 +396,11 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
             Chart-level indicators or instant web grades — choose the interface that fits your workflow.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all border" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)', background: 'transparent' }}>
-              Indicator Suite — $49 <IconArrowRight />
-            </a>
             <a href={tickerGraderProUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #d4af37, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(212,175,55,0.25)' }}>
               Ticker Grader Pro — $14.99/mo <IconArrowRight />
+            </a>
+            <a href={indicatorCheckoutUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all border" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)', background: 'transparent' }}>
+              Indicator Suite — $49 one-time <IconArrowRight />
             </a>
           </div>
         </div>
