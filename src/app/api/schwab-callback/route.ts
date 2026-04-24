@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Schwab OAuth Callback — Server-Side Token Exchange
+ * Schwab OAuth callback.
  *
- * Schwab redirects here after user grants consent.
- * This function immediately exchanges the code for tokens
- * server-side (no race condition) and displays them for
- * copy-paste into the trading bot.
+ * Schwab redirects here after the operator grants consent. This route exchanges
+ * the one-time authorization code server-side and displays the resulting token
+ * JSON for the operator to save into the local trading bot token file.
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -19,25 +18,30 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  // ── Credentials (hardcoded for this one-time setup) ──────────────────────
-  const CLIENT_ID     = "NV4vGaW3qcCmPMrKEORweKb8wJg0KYcnvXOUrRwQqhk7fwAy";
-  const CLIENT_SECRET = "ezA70RE5nYkG04x4cgh8o9wbnB1RYExJDZZ5M2VR9Zx6HTbGCOkph9uAKoeWveFk";
-  const REDIRECT_URI  = "https://www.quantread.app/api/schwab-callback";
-  // ─────────────────────────────────────────────────────────────────────────
+  const clientId = process.env.SCHWAB_CLIENT_ID;
+  const clientSecret = process.env.SCHWAB_CLIENT_SECRET;
+  const redirectUri = process.env.SCHWAB_REDIRECT_URI || "https://www.quantread.app/api/schwab-callback";
 
-  const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+  if (!clientId || !clientSecret) {
+    return new NextResponse(errorPage("Schwab credentials are not configured on Vercel."), {
+      status: 500,
+      headers: { "Content-Type": "text/html" },
+    });
+  }
+
+  const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
 
   try {
     const body = new URLSearchParams({
-      grant_type:   "authorization_code",
-      code:         code,
-      redirect_uri: REDIRECT_URI,
+      grant_type: "authorization_code",
+      code,
+      redirect_uri: redirectUri,
     });
 
     const resp = await fetch("https://api.schwabapi.com/v1/oauth/token", {
       method: "POST",
       headers: {
-        Authorization:  `Basic ${credentials}`,
+        Authorization: `Basic ${credentials}`,
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: body.toString(),
@@ -58,7 +62,6 @@ export async function GET(request: NextRequest) {
       status: 200,
       headers: { "Content-Type": "text/html" },
     });
-
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     return new NextResponse(errorPage(`Internal error: ${escapeHtml(message)}`), {
@@ -69,7 +72,7 @@ export async function GET(request: NextRequest) {
 }
 
 function escapeHtml(s: string) {
-  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function successPage(tokenJson: string) {
@@ -77,7 +80,7 @@ function successPage(tokenJson: string) {
   return `<!DOCTYPE html>
 <html>
 <head>
-<title>✅ Schwab Tokens Ready</title>
+<title>Schwab Tokens Ready</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#0a0f1e;color:#e0e6ff;font-family:'Courier New',monospace;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
@@ -94,20 +97,20 @@ h1{color:#4ade80;font-size:1.8em;margin-bottom:8px}
 </head>
 <body>
 <div class="card">
-  <h1>🎉 TOKENS ACQUIRED</h1>
-  <p class="subtitle">Copy the JSON below and paste it into the chat</p>
-  <div class="label">schwab_tokens.json — Copy this entire block</div>
+  <h1>Tokens acquired</h1>
+  <p class="subtitle">Copy this JSON into your local trading bot token file.</p>
+  <div class="label">data/schwab_tokens.json</div>
   <pre class="json-box" id="tokens">${escaped}</pre>
-  <button class="btn" id="btn" onclick="copy()">📋 Copy Full Token JSON</button>
-  <div class="note">✅ Exchange was done server-side in milliseconds — these tokens are fresh and valid for 30 minutes (access) / 7 days (refresh).</div>
+  <button class="btn" id="btn" onclick="copy()">Copy token JSON</button>
+  <div class="note">Do not paste these tokens into chat or social apps. Save them only into the trading bot token file.</div>
 </div>
 <script>
 function copy(){
   var txt=document.getElementById('tokens').innerText;
   navigator.clipboard.writeText(txt).then(function(){
     var b=document.getElementById('btn');
-    b.textContent='✅ Copied!';b.className='btn ok';
-    setTimeout(function(){b.textContent='📋 Copy Full Token JSON';b.className='btn';},3000);
+    b.textContent='Copied';b.className='btn ok';
+    setTimeout(function(){b.textContent='Copy token JSON';b.className='btn';},3000);
   });
 }
 </script>
@@ -121,7 +124,7 @@ function errorPage(msg: string) {
 <head><title>Auth Error</title></head>
 <body style="background:#0a0a0a;color:#ff4444;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;padding:20px">
   <div style="text-align:center;max-width:600px">
-    <h1>❌ Token Exchange Failed</h1>
+    <h1>Token exchange failed</h1>
     <p style="margin-top:16px;color:#94a3b8">${msg}</p>
   </div>
 </body>
