@@ -11,9 +11,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "QuantRead — Intelligence for Modern Traders",
   description:
-    "Real-time trade alerts, pre-market intelligence briefs, and proprietary TradingView indicators. Powered by a live quantitative trading engine.",
+    "Watchlist alerts, pre-market intelligence briefs, TradingView indicators, and live system transparency powered by a quantitative trading engine.",
   keywords: [
-    "trading signals",
+    "watchlist alerts",
     "algo trading",
     "trade alerts",
     "pre-market analysis",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "QuantRead — Intelligence for Modern Traders",
     description:
-      "Real-time trade alerts, pre-market intelligence briefs, and proprietary TradingView indicators.",
+      "Watchlist alerts, pre-market intelligence briefs, proprietary TradingView indicators, and live system transparency.",
     type: "website",
     url: "https://quantread.app",
   },

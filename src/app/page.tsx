@@ -1,6 +1,8 @@
 'use client';
 
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 /* ─── SVG Icons (inline, no dependencies) ─────────────────────────────────── */
 const IconSignal = () => (
@@ -41,11 +43,18 @@ const IconTelegram = () => (
 );
 
 /* ─── Plan Data ───────────────────────────────────────────────────────────── */
+const MEMBERSHIP_URL = "https://im.page/quantread";
+const TELEGRAM_URL = "https://t.me/MyAlertAgent_bot";
+const INDICATOR_CHECKOUT_URL = "https://buy.stripe.com/bJeaERf4qaLUesb8yE3AY03";
+const TICKER_GRADER_PRO_URL = "https://buy.stripe.com/5kQfZb1dA8DM97R4io3AY04";
+
 const plans = [
   {
     name: "Ticker Grader Pro",
     price: "$14.99",
     period: "/month",
+    href: TICKER_GRADER_PRO_URL,
+    cta: "Start Grading Unlimited",
     icon: <IconSignal />,
     accent: "from-cyan-500/20 to-cyan-500/5",
     borderAccent: "hover:border-cyan-500/30",
@@ -56,23 +65,25 @@ const plans = [
       "Trading style guide (Day Trader / Scalper / Swing)",
       "Pine Script™ indicator suite included",
     ],
-    best: "Traders who want institutional-grade stock analysis",
+    best: "Traders who want faster watchlist grading without the daily cap",
   },
   {
-    name: "TG Pro + Live Feed",
+    name: "QuantRead Live Feed",
     price: "$29.99",
     period: "/month",
+    href: MEMBERSHIP_URL,
+    cta: "Choose Live Feed",
     icon: <IconBrain />,
     accent: "from-violet-500/20 to-violet-500/5",
     borderAccent: "hover:border-violet-500/30",
     iconColor: "text-violet-400",
     popular: true,
     features: [
-      "Everything in Ticker Grader Pro",
-      "Real-time trade entries & exits via Telegram",
-      "Daily pre-market AI intelligence briefs",
-      "Live danger alerts (RSI, RVOL, Ichimoku)",
-      "Watch an autonomous system trade in real time",
+      "Live entries, exits, and risk events via Telegram",
+      "Daily pre-market intelligence briefs",
+      "Danger alerts for RSI, RVOL, and trend conditions",
+      "Transparent view into the live engine's process",
+      "Pro Bundle available on the access page for $49/mo",
     ],
     best: "Active traders who want live system transparency",
   },
@@ -80,6 +91,8 @@ const plans = [
     name: "Pine Script Suite",
     price: "$49",
     period: "one-time",
+    href: INDICATOR_CHECKOUT_URL,
+    cta: "Buy Indicator Suite",
     icon: <IconDiamond />,
     accent: "from-amber-500/20 to-amber-500/5",
     borderAccent: "hover:border-amber-500/30",
@@ -96,16 +109,16 @@ const plans = [
 ];
 
 const steps = [
-  { num: "01", title: "Start Free", desc: "Use the Ticker Grader and Position Sizer with no signup. See the engine's conviction scores on real stocks." },
+  { num: "01", title: "Start Free", desc: "Use the Ticker Grader and Position Sizer with no signup. See conviction scores and sizing math on real stocks." },
   { num: "02", title: "Go Pro", desc: "Subscribe to Ticker Grader Pro for unlimited grades, full breakdown, and the Pine Script indicator suite." },
-  { num: "03", title: "Get the Live Feed", desc: "Upgrade to see every trade the engine makes in real time — entries, exits, and morning briefs delivered to Telegram." },
+  { num: "03", title: "Get the Live Feed", desc: "Upgrade for a real-time transparency feed: entries, exits, risk events, and morning briefs delivered to Telegram." },
 ];
 
 const stats = [
   { value: "7", label: "Conviction Factors" },
-  { value: "< 1s", label: "Alert Latency" },
+  { value: "Live", label: "Feed Updates" },
   { value: "24/5", label: "Market Coverage" },
-  { value: "100%", label: "Automated Risk" },
+  { value: "Risk", label: "First Process" },
 ];
 
 /* ─── Email Capture Component ─────────────────────────────────────────────── */
@@ -188,8 +201,8 @@ function EmailCapture() {
 
 /* ─── Page Component ──────────────────────────────────────────────────────── */
 export default function LandingPage() {
-  const membershipUrl = "https://im.page/quantread";
-  const telegramUrl = "https://t.me/MyAlertAgent_bot";
+  const membershipUrl = MEMBERSHIP_URL;
+  const telegramUrl = TELEGRAM_URL;
 
   return (
     <main className="min-h-screen overflow-x-hidden" style={{ fontFamily: 'var(--font-inter), Inter, sans-serif' }}>
@@ -205,7 +218,7 @@ export default function LandingPage() {
             <a href="#plans" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Plans</a>
             <a href="https://quantread-ticker-grader.onrender.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Ticker Grader</a>
             <a href="https://quantread-position-sizer.onrender.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Position Sizer</a>
-            <a href="/indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Indicators</a>
+            <Link href="/indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Indicators</Link>
             <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all animate-pulse-gold" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>
               Get Access
             </a>
@@ -219,7 +232,7 @@ export default function LandingPage() {
           {/* Badge */}
           <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8 border" style={{ background: 'rgba(212,175,55,0.08)', borderColor: 'rgba(212,175,55,0.2)', color: 'var(--qr-gold)' }}>
             <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--qr-green)' }} />
-            Live Trading Engine — Signals Delivered in Real Time
+            Live System Transparency - Watchlist Alerts & Market Prep
           </div>
 
           {/* Headline */}
@@ -230,7 +243,7 @@ export default function LandingPage() {
 
           {/* Subheadline */}
           <p className="animate-fade-in-up-delay-2 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-            Real-time trade alerts, pre-market intelligence briefs, and proprietary TradingView indicators — powered by a live quantitative execution engine.
+            Watchlist alerts, pre-market intelligence briefs, and proprietary TradingView indicators powered by a live quantitative execution engine.
           </p>
 
           {/* CTAs */}
@@ -320,7 +333,7 @@ export default function LandingPage() {
                   </p>
 
                   {/* CTA */}
-                  <a href={membershipUrl} target="_blank" rel="noopener noreferrer"
+                  <a href={plan.href} target="_blank" rel="noopener noreferrer"
                     className="block w-full text-center py-3.5 rounded-xl text-sm font-bold transition-all"
                     style={{
                       background: plan.popular ? 'var(--qr-gold)' : 'transparent',
@@ -328,7 +341,7 @@ export default function LandingPage() {
                       border: plan.popular ? 'none' : '1px solid var(--qr-border)',
                     }}
                   >
-                    Get Instant Access
+                    {plan.cta}
                   </a>
                 </div>
               </div>
@@ -336,7 +349,12 @@ export default function LandingPage() {
           </div>
 
           <p className="text-center mt-8 text-sm" style={{ color: 'var(--qr-text-dim)' }}>
-            All plans: cancel anytime. No contracts. No hidden fees. Powered by Stripe.
+            Monthly plans: cancel anytime. No contracts. No hidden fees. Powered by Stripe.
+            Need both unlimited grading and the live feed? Choose the QuantRead Pro Bundle on the access page for $49/mo.
+          </p>
+
+          <p className="max-w-3xl mx-auto text-center mt-4 text-xs leading-relaxed" style={{ color: 'var(--qr-text-dim)' }}>
+            QuantRead provides educational market intelligence and live system transparency. It is not personalized investment advice, and you remain responsible for your own trading decisions.
           </p>
         </div>
       </section>
@@ -347,7 +365,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">What the Engine Evaluates</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              Every signal passes through 7 independent conviction factors. Only A-grade and S-grade setups fire.
+              Every alert candidate passes through independent conviction factors. Higher-quality setups are surfaced while noisy names are filtered down.
             </p>
           </div>
 
@@ -378,7 +396,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">How It Works</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              From signup to your first signal in under 2 minutes.
+              From signup to your first watchlist read in under 2 minutes.
             </p>
           </div>
 
@@ -420,10 +438,10 @@ export default function LandingPage() {
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>FREE</span>
                 </div>
                 <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                  Instant conviction scoring for any stock. Enter a ticker and get an institutional-grade A-F letter grade powered by 6 factors: EMA Ribbon, RVOL, RSI, ATR, Momentum, and Trend.
+                  Instant conviction scoring for any stock. Enter a ticker and get a structured A-F letter grade powered by 6 factors: EMA Ribbon, RVOL, RSI, ATR, Momentum, and Trend.
                 </p>
                 <ul className="space-y-2">
-                  {['Real-time data from live markets', 'Same scoring model as our trading bot', 'No signup, no email, no limits'].map((f, i) => (
+                  {['Real-time data from live markets', 'Same scoring model as our trading bot', 'No signup, no email, 3 free grades daily'].map((f, i) => (
                     <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
                       <span className="mt-0.5 shrink-0"><IconCheck /></span>{f}
                     </li>
@@ -445,7 +463,7 @@ export default function LandingPage() {
                   <span className="px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>FREE</span>
                 </div>
                 <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                  Calculate exactly how many shares to buy for any stock. Uses real-time ATR volatility to set your stop, target, and position size — the same math our live bot uses before every trade.
+                  Calculate a volatility-aware share count for any stock. Uses real-time ATR to estimate stop distance, target distance, and position size - the same risk math our live bot uses before every trade.
                 </p>
                 <ul className="space-y-2">
                   {['ATR-based stop loss and profit target', 'Visual risk exposure meter', 'Same risk engine as our trading system'].map((f, i) => (
@@ -474,7 +492,7 @@ export default function LandingPage() {
               Take the <span style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF, #d4af37)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Brain</span> With You
             </h2>
             <p className="text-base md:text-lg max-w-2xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              The same conviction engine powering a live automated portfolio — now running directly on your TradingView chart. Two proprietary indicators. Full source code. Zero black boxes.
+              A chart-level companion to QuantRead&apos;s live conviction framework, running directly on your TradingView chart. Two proprietary indicators. Full source code. Zero black boxes.
             </p>
           </div>
 
@@ -485,7 +503,7 @@ export default function LandingPage() {
               <span className="ml-auto px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>QUANT v2 ACTIVE</span>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/chart_preview.png" alt="Quant v2 indicators running on WMT 1-minute chart showing ATR trigger zones, EMA ribbon, and BUY signal" className="w-full h-auto" />
+            <img src="/chart_preview.png" alt="Quant v2 indicators running on WMT 1-minute chart showing ATR trigger zones, EMA ribbon, and setup marker" className="w-full h-auto" />
           </div>
 
           {/* Two indicator cards */}
@@ -503,7 +521,7 @@ export default function LandingPage() {
                 {[
                   "ATR trigger cloud zones — visible before they fire",
                   "8/21/34 EMA ribbon with stacked trend detection",
-                  "Real-time BUY arrow signals on conviction alignment",
+                  "Real-time setup markers on conviction alignment",
                   "Works on any timeframe — 1min to Daily",
                 ].map((f, i) => (
                   <li key={i} className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
@@ -520,7 +538,7 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold mb-1">Quant Conviction Histogram</h3>
               <p className="text-xs font-bold mb-4 tracking-widest uppercase" style={{ color: 'var(--qr-gold)' }}>Sub-Pane Indicator</p>
               <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                The factor breakdown that powers every signal grade. Watch conviction build bar-by-bar as each independent factor — volume, ATR, gap, catalyst, RSI — fires or fails.
+                The factor breakdown behind each alert grade. Watch conviction build bar-by-bar as each independent factor - volume, ATR, gap, catalyst, RSI - fires or fails.
               </p>
               <ul className="space-y-2.5">
                 {[
@@ -569,12 +587,12 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
               Both indicators included with <strong style={{ color: '#4ade80' }}>Ticker Grader Pro — $14.99/mo</strong> &nbsp;or&nbsp; <strong style={{ color: '#d4af37' }}>$49 one-time purchase</strong>
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
+              <a href={TICKER_GRADER_PRO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-bold transition-all" style={{ background: 'linear-gradient(135deg, #4B9EFF, #B04BFF)', color: '#fff', boxShadow: '0 8px 30px rgba(75,158,255,0.25)' }}>
                 Get Ticker Grader Pro <IconArrowRight />
               </a>
-              <a href="/indicators" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
+              <Link href="/indicators" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium border transition-all" style={{ borderColor: 'var(--qr-border)', color: 'var(--qr-text-muted)' }}>
                 View Full Indicator Details
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -602,7 +620,7 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
-                  The Full <span style={{ color: 'var(--qr-gold)' }}>Autonomous System</span>
+                  Private <span style={{ color: 'var(--qr-gold)' }}>System Deployment</span>
                 </h2>
 
                 <div className="flex items-baseline gap-2 mb-6">
@@ -611,16 +629,16 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
                 </div>
 
                 <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                  A private deployment of the complete QuantRead execution engine — the same system that scans 57 symbols, scores conviction across 12 factors, and executes bracket orders autonomously via the Schwab API. Installed on your own infrastructure. Tuned to your account.
+                  A private deployment of the complete QuantRead execution engine - scanner, scoring model, dashboard, risk controls, and broker-connectivity workflow. Installed on your own infrastructure and configured around documented risk parameters.
                 </p>
 
                 <ul className="space-y-3 mb-8">
                   {[
                     'Complete source code — Python bot, Pine Scripts, dashboard',
                     '1-on-1 deployment to your private VPS',
-                    'Schwab API integration and live calibration',
-                    'Custom universe and risk parameters for your account',
-                    '90 days of direct support and system tuning',
+                    'Schwab API integration and live-readiness checklist',
+                    'Custom universe and risk parameters you define',
+                    '90 days of direct support, monitoring, and runbook review',
                     'Full architecture documentation and runbooks',
                   ].map((f, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm" style={{ color: 'var(--qr-text-muted)' }}>
@@ -646,11 +664,11 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
           <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-12 text-center">Common Questions</h2>
           <div className="space-y-6">
             {[
-              { q: "Do I need a Schwab account?", a: "No. QuantRead subscriptions deliver pure intelligence and signals via Telegram. You can use any broker to act on them." },
-              { q: "How fast are the alerts?", a: "Alerts are delivered in under 1 second from the moment the engine scores the setup. You see the signal before the order fills." },
+              { q: "Do I need a Schwab account?", a: "No. QuantRead subscriptions deliver market intelligence, watchlist alerts, and system transparency via Telegram. You can use any broker for your own trading decisions." },
+              { q: "How fast are the alerts?", a: "Live Feed updates are delivered as the engine records entries, exits, risk events, and scanner context. Delivery speed can vary by data provider, Telegram, and market conditions." },
               { q: "Can I cancel anytime?", a: "Yes. All plans are month-to-month via Stripe. Cancel with one click, no questions asked." },
-              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and BUY signals) and the Quant Conviction Histogram (sub-pane with factor breakdown). Included with all paid subscriptions and available as a $49 one-time purchase." },
-              { q: "What is the Live Feed?", a: "A real-time transparency window into our autonomous trading engine. Watch every trade it makes — entries, exits, morning briefs, and danger alerts — delivered to your Telegram. This is NOT investment advice; it's a live view of how a quantitative system operates." },
+              { q: "What are the TradingView indicators?", a: "Two proprietary Pine Script indicators: the Quant Model Visualizer (on-chart overlay showing ATR levels, trigger clouds, EMA ribbon, and setup markers) and the Quant Conviction Histogram (sub-pane with factor breakdown). Included with Ticker Grader Pro and available as a $49 one-time purchase." },
+              { q: "What is the Live Feed?", a: "A real-time transparency window into our autonomous trading engine. Watch recorded entries, exits, morning briefs, and risk alerts delivered to your Telegram. This is educational system visibility, not personalized investment advice." },
               { q: "Can I modify the Pine Script?", a: "Yes. You receive the full, unobfuscated source code. Change parameters, add rules, combine with your own scripts — it's yours." },
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-xl border" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.6)' }}>
@@ -670,14 +688,14 @@ ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span s
         <div className="absolute inset-0 hero-glow" />
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-6">
-            Start receiving signals<br />
+            See what the engine sees<br />
             <span className="shimmer-text">before the next bell.</span>
           </h2>
           <p className="text-base mb-10 max-w-lg mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-            Join QuantRead and see exactly what the engine sees — in real time, on your phone.
+            Join QuantRead for market prep, watchlist alerts, and live system transparency on your phone.
           </p>
           <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-10 py-5 rounded-xl text-lg font-bold transition-all animate-pulse-gold" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>
-            Get Instant Access
+            View Access Options
             <IconArrowRight />
           </a>
         </div>

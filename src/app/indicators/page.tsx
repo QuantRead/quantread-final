@@ -1,6 +1,8 @@
 'use client';
 
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';
+import Link from 'next/link';
 
 /* ─── SVG Icons ───────────────────────────────────────────────────────────── */
 const IconCheck = () => (
@@ -27,12 +29,12 @@ export default function IndicatorsPage() {
       {/* ═══ NAV ═══ */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-xl" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.85)' }}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>Q</div>
             <span className="font-bold text-lg tracking-tight">QuantRead</span>
-          </a>
+          </Link>
           <div className="flex items-center gap-6">
-            <a href="/" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Home</a>
+            <Link href="/" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Home</Link>
             <a href="#indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Indicators</a>
             <a href="#ticker-grader-pro" className="text-sm font-medium transition-colors" style={{ color: '#d4af37' }}>Ticker Grader Pro</a>
             <a href="#pricing" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }}>Pricing</a>
@@ -57,7 +59,7 @@ export default function IndicatorsPage() {
           </h1>
 
           <p className="animate-fade-in-up-delay-2 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-            The same conviction engine powering a live automated portfolio — now running directly on your TradingView chart. Two proprietary indicators. Full source code. Zero black boxes.
+            A chart-level companion to QuantRead&apos;s live conviction framework, running directly on your TradingView chart. Two proprietary indicators. Full source code. Zero black boxes.
           </p>
 
           <div className="animate-fade-in-up-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -80,7 +82,7 @@ export default function IndicatorsPage() {
               <span className="ml-auto px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: 'rgba(74,222,128,0.1)', color: '#4ade80' }}>QUANT v2 ACTIVE</span>
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/chart_preview.png" alt="Quant v2 indicators running on WMT 1-minute chart showing ATR trigger zones, EMA ribbon, and BUY signal" className="w-full h-auto" />
+            <img src="/chart_preview.png" alt="Quant v2 indicators running on WMT 1-minute chart showing ATR trigger zones, EMA ribbon, and setup marker" className="w-full h-auto" />
           </div>
         </div>
       </section>
@@ -110,7 +112,7 @@ export default function IndicatorsPage() {
                 {[
                   "ATR trigger cloud zones — buy/sell boundaries visible before they fire",
                   "8/21/34 EMA ribbon with stacked trend detection",
-                  "Real-time BUY arrow signals when conviction factors align",
+                  "Real-time setup markers when conviction factors align",
                   "Ichimoku baseline overlay for structural confirmation",
                   "Works on any timeframe — 1min to Daily",
                 ].map((f, i) => (
@@ -128,7 +130,7 @@ export default function IndicatorsPage() {
               <h3 className="text-xl font-bold mb-1">Quant Conviction Histogram</h3>
               <p className="text-xs font-bold mb-5 tracking-widest uppercase" style={{ color: 'var(--qr-gold)' }}>Sub-Pane Indicator</p>
               <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                The factor breakdown that powers every signal grade. Watch conviction build bar-by-bar as each independent factor — volume, ATR, gap, catalyst, RSI — fires or fails.
+                The factor breakdown behind each alert grade. Watch conviction build bar-by-bar as each independent factor - volume, ATR, gap, catalyst, RSI - fires or fails.
               </p>
               <ul className="space-y-3">
                 {[
@@ -230,7 +232,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
             <p className="text-xs font-bold tracking-[3px] uppercase mb-3" style={{ color: 'var(--qr-text-dim)' }}>How It Compares</p>
             <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Not Another Generic Indicator</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              Most paid TradingView indicators are generic oscillators wrapped in pretty colors. This is the actual scoring engine behind a live portfolio.
+              Most paid TradingView indicators are generic oscillators wrapped in pretty colors. This gives you a transparent visual companion to QuantRead&apos;s live scoring framework.
             </p>
           </div>
 
@@ -246,7 +248,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
               <tbody>
                 {[
                   { feature: "Source code included", generic: "Locked / invite-only", qr: "Full Pine Script", genBad: true },
-                  { feature: "Based on live execution data", generic: "Backtested only", qr: "Powers a live portfolio", genBad: true },
+                  { feature: "Connected to live engine logic", generic: "Backtested only", qr: "Mirrors core scoring factors", genBad: true },
                   { feature: "Multi-factor conviction scoring", generic: "Single indicator", qr: "7 independent factors", genBad: true },
                   { feature: "ATR-adaptive levels", generic: "Fixed / static zones", qr: "Dynamic ATR cloud", genBad: true },
                   { feature: "Works with alerts", generic: "Sometimes", qr: "Native TradingView alerts", genBad: false },
@@ -275,7 +277,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
             <p className="text-xs font-bold tracking-[3px] uppercase mb-3" style={{ color: 'var(--qr-text-dim)' }}>Pricing</p>
             <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">Two Ways to Access</h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: 'var(--qr-text-muted)' }}>
-              Buy the indicators outright for $49, or get them included with Ticker Grader Pro alongside unlimited AI-powered conviction scores.
+              Buy the indicators outright for $49, or get them included with Ticker Grader Pro alongside unlimited conviction grades.
             </p>
           </div>
 
@@ -327,7 +329,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
                 </div>
 
                 <h3 className="text-xl font-black mb-2">Ticker Grader Pro</h3>
-                <p className="text-sm mb-6" style={{ color: 'var(--qr-text-muted)' }}>Unlimited AI-powered conviction scores for any stock</p>
+                <p className="text-sm mb-6" style={{ color: 'var(--qr-text-muted)' }}>Unlimited conviction grades for any stock</p>
 
                 <div className="mb-2" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                   <span className="text-lg align-top" style={{ color: '#d4af37' }}>$</span>
@@ -358,6 +360,10 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
             </div>
 
           </div>
+
+          <p className="max-w-3xl mx-auto text-center mt-8 text-xs leading-relaxed" style={{ color: 'var(--qr-text-dim)' }}>
+            QuantRead indicators and grades are educational market-intelligence tools. They are not personalized investment advice, and you remain responsible for your own trading decisions.
+          </p>
         </div>
       </section>
 
@@ -367,11 +373,11 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
           <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-12 text-center">Common Questions</h2>
           <div className="space-y-6">
             {[
-              { q: "Do I need a paid TradingView plan?", a: "No. Both indicators work on TradingView's free plan. However, free plans are limited to 2 indicators per chart — you may want Plus ($14.95/mo) for unlimited." },
+              { q: "Do I need a paid TradingView plan?", a: "No. Both indicators work on TradingView's free plan. If you run many indicators on one chart, a paid TradingView plan may give you more room." },
               { q: "Can I modify the Pine Script code?", a: "Yes. You receive the full, unobfuscated source code. Change parameters, add rules, combine with your own scripts — it's yours. The only restriction is redistribution or resale." },
               { q: "Is this the same system that runs the live portfolio?", a: "The indicators are a visual representation of the core conviction factors (ATR cloud, EMA ribbon, volume, RSI). The live engine includes additional server-side factors like options flow and news catalysts." },
               { q: "What's the difference between buying once vs. subscribing?", a: "The $49 one-time purchase gets you the Pine Script indicators only. Ticker Grader Pro ($14.99/mo) gets you the same indicators PLUS unlimited AI conviction grades for any stock. Both include the full source code." },
-              { q: "What is the Live Feed add-on?", a: "For $29.99/mo you get everything in Ticker Grader Pro plus a real-time transparency window into the autonomous trading engine — watch every entry, exit, morning brief, and danger alert via Telegram." },
+              { q: "What is the Live Feed add-on?", a: "For $29.99/mo you get a real-time transparency window into the autonomous trading engine: recorded entries, exits, morning briefs, and risk alerts via Telegram. The Pro Bundle combines unlimited grading with the Live Feed for $49/mo on the access page." },
               { q: "What happens to the indicators if I cancel my subscription?", a: "The Pine Script code you received stays on your chart. However, you'll lose access to the Ticker Grader web tool, future indicator updates, and the Live Feed." },
               { q: "Can I get a refund?", a: "Subscriptions can be cancelled anytime from your Stripe account — no refund needed, just stop billing. One-time indicator purchases are handled case-by-case within 7 days since source code is involved." },
             ].map((item, i) => (
@@ -415,7 +421,7 @@ score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `
             <span className="text-xs ml-2" style={{ color: 'var(--qr-text-dim)' }}>&copy; {new Date().getFullYear()}</span>
           </div>
           <div className="flex items-center gap-6 text-sm" style={{ color: 'var(--qr-text-dim)' }}>
-            <a href="/" className="transition-colors hover:text-white">Home</a>
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
             <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Subscribe</a>
             <a href="https://t.me/MyAlertAgent_bot" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Telegram</a>
             <a href="https://x.com/QuantReadapp" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Twitter/X</a>

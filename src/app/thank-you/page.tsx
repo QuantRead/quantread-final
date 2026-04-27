@@ -1,14 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 /* ─── Icons ───────────────────────────────────────────────────────────────── */
-const IconCheck = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
-
 const IconCopy = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
@@ -237,10 +232,10 @@ export default function ThankYouPage() {
       {/* ═══ NAV ═══ */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-xl" style={{ borderColor: 'var(--qr-border)', background: 'rgba(5,10,24,0.85)' }}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>Q</div>
             <span className="font-bold text-lg tracking-tight">QuantRead</span>
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -392,8 +387,8 @@ export default function ThankYouPage() {
             <span className="text-xs ml-2" style={{ color: 'var(--qr-text-dim)' }}>&copy; {new Date().getFullYear()}</span>
           </div>
           <div className="flex items-center gap-6 text-sm" style={{ color: 'var(--qr-text-dim)' }}>
-            <a href="/" className="transition-colors hover:text-white">Home</a>
-            <a href="/indicators" className="transition-colors hover:text-white">Indicators</a>
+            <Link href="/" className="transition-colors hover:text-white">Home</Link>
+            <Link href="/indicators" className="transition-colors hover:text-white">Indicators</Link>
             <a href="https://x.com/QuantReadapp" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Twitter/X</a>
           </div>
         </div>

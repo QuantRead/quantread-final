@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "QuantRead Indicators — Proprietary TradingView Pine Script Suite",
   description:
-    "Two proprietary TradingView indicators with Pine Script source code. The same conviction engine that runs a live trading portfolio — now on your chart. $49 one-time or included with Ticker Grader Pro ($14.99/mo).",
+    "Two proprietary TradingView indicators with Pine Script source code. A chart-level companion to QuantRead's live conviction framework. $49 one-time or included with Ticker Grader Pro ($14.99/mo).",
   keywords: [
     "TradingView indicators",
     "Pine Script",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "conviction scoring",
     "quantitative trading",
     "EMA ribbon indicator",
-    "trade signals TradingView",
+    "TradingView alerts",
   ],
   openGraph: {
     title: "QuantRead Indicators — Take the Brain With You",
