@@ -37,16 +37,19 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Schwab Callback Security
 
-The Schwab OAuth callback at `/api/schwab-callback` is a server-side token exchange route. It intentionally fails closed unless these server-only environment variables are configured:
+The Schwab weekly re-auth flow starts at `/api/schwab-start` and finishes at `/api/schwab-callback`.
+
+`/api/schwab-start` creates a one-time browser safety code, sends the operator to Schwab, and stores the safety code in an HTTP-only cookie. `/api/schwab-callback` exchanges the returned Schwab code only if that safety code matches.
+
+The route intentionally fails closed unless these server-only environment variables are configured:
 
 - `SCHWAB_CLIENT_ID`
 - `SCHWAB_CLIENT_SECRET`
 - `SCHWAB_REDIRECT_URI`
-- `SCHWAB_OAUTH_STATE`
 
 Do not prefix these values with `NEXT_PUBLIC_`. They must only exist in local `.env.local` files or Vercel server environment variables.
 
-`SCHWAB_OAUTH_STATE` should be a high-entropy secret value. The Schwab authorization URL must include the same `state` value so the callback can reject unsolicited or replayed OAuth redirects.
+`SCHWAB_OAUTH_STATE` is optional and only exists as a fallback for old manually generated authorization URLs. The normal weekly workflow should use `/api/schwab-start`, which generates a fresh state value each time.
 
 The callback response is marked `no-store` and `noindex`, but the returned token JSON is still sensitive. Copy it only into the secured operator workflow, then close the browser tab.
 
