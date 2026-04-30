@@ -34,3 +34,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Schwab Callback Security
+
+The Schwab OAuth callback at `/api/schwab-callback` is a server-side token exchange route. It intentionally fails closed unless these server-only environment variables are configured:
+
+- `SCHWAB_CLIENT_ID`
+- `SCHWAB_CLIENT_SECRET`
+- `SCHWAB_REDIRECT_URI`
+- `SCHWAB_OAUTH_STATE`
+
+Do not prefix these values with `NEXT_PUBLIC_`. They must only exist in local `.env.local` files or Vercel server environment variables.
+
+`SCHWAB_OAUTH_STATE` should be a high-entropy secret value. The Schwab authorization URL must include the same `state` value so the callback can reject unsolicited or replayed OAuth redirects.
+
+The callback response is marked `no-store` and `noindex`, but the returned token JSON is still sensitive. Copy it only into the secured operator workflow, then close the browser tab.
+
+If Schwab credentials were ever committed, pasted into chat, or deployed inside source code, rotate the Schwab app secret immediately, update the Vercel production environment variables, and redeploy.
