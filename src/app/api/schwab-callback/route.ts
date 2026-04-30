@@ -4,8 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const STATE_COOKIE = "qr_schwab_oauth_state";
-
 const NO_STORE_HEADERS = {
   "Content-Type": "text/html; charset=utf-8",
   "Cache-Control": "no-store, no-cache, private, max-age=0",
@@ -22,7 +20,7 @@ const NO_STORE_HEADERS = {
  *
  * The route is intentionally fail-closed:
  * - credentials must come from server-only environment variables
- * - OAuth state must match the one-time browser cookie from schwab-start
+ * - OAuth state must match the private configured state
  * - responses must never be cached or indexed
  */
 export async function GET(request: NextRequest) {
@@ -34,11 +32,11 @@ export async function GET(request: NextRequest) {
   const clientSecret = process.env.SCHWAB_CLIENT_SECRET;
   const redirectUri =
     process.env.SCHWAB_REDIRECT_URI || "https://www.quantread.app/api/schwab-callback";
-  const expectedState = request.cookies.get(STATE_COOKIE)?.value || process.env.SCHWAB_OAUTH_STATE;
+  const expectedState = process.env.SCHWAB_OAUTH_STATE;
 
-  if (!clientId || !clientSecret) {
+  if (!clientId || !clientSecret || !expectedState) {
     return htmlResponse(
-      errorPage("Schwab callback is not configured. Server-side credentials are required."),
+      errorPage("Schwab callback is not configured. Server-side credentials and state are required."),
       503,
     );
   }
@@ -47,16 +45,8 @@ export async function GET(request: NextRequest) {
     return htmlResponse(errorPage("No authorization code received from Schwab."), 400);
   }
 
-  if (!expectedState) {
-    return htmlResponse(
-      errorPage("Schwab login was not started from the Re-Auth button. Go back to the dashboard and try again."),
-      403,
-      true,
-    );
-  }
-
   if (!state || !safeEqual(state, expectedState)) {
-    return htmlResponse(errorPage("Invalid Schwab login state. Go back to the dashboard and try again."), 403, true);
+    return htmlResponse(errorPage("Invalid Schwab login state. Go back to the dashboard and try again."), 403);
   }
 
   const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
@@ -79,33 +69,24 @@ export async function GET(request: NextRequest) {
     });
 
     if (!resp.ok) {
-      return htmlResponse(errorPage(`Token exchange failed. Schwab returned HTTP ${resp.status}.`), 500, true);
+      return htmlResponse(errorPage(`Token exchange failed. Schwab returned HTTP ${resp.status}.`), 500);
     }
 
     const tokens = await resp.json();
     const tokenJson = JSON.stringify(tokens, null, 2);
 
-    return htmlResponse(successPage(tokenJson), 200, true);
+    return htmlResponse(successPage(tokenJson), 200);
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
-    return htmlResponse(errorPage(`Internal error: ${escapeHtml(message)}`), 500, true);
+    return htmlResponse(errorPage(`Internal error: ${escapeHtml(message)}`), 500);
   }
 }
 
-function htmlResponse(body: string, status: number, clearStateCookie = false) {
-  const response = new NextResponse(body, {
+function htmlResponse(body: string, status: number) {
+  return new NextResponse(body, {
     status,
     headers: NO_STORE_HEADERS,
   });
-
-  if (clearStateCookie) {
-    response.cookies.set(STATE_COOKIE, "", {
-      path: "/",
-      maxAge: 0,
-    });
-  }
-
-  return response;
 }
 
 function safeEqual(a: string, b: string) {
