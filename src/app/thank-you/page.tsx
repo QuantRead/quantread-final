@@ -1,7 +1,8 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { convictionHistogramCode, quantModelVisualizerCode } from '@/lib/pinescript-source';
 
 /* ─── Icons ───────────────────────────────────────────────────────────────── */
 const IconCopy = () => (
@@ -16,176 +17,7 @@ const IconCheckSmall = () => (
   </svg>
 );
 
-/* ─── Pine Script Source Code ─────────────────────────────────────────────── */
-const quantModelVisualizerCode = `// ═══════════════════════════════════════════════════════════
-// Quant Model Visualizer — QuantRead © 2026
-// Full Pine Script™ source code — modify freely
-// ═══════════════════════════════════════════════════════════
-
-//@version=6
-indicator("Quant Model Visualizer", overlay=true, max_labels_count=50)
-
-// ──── INPUTS ────
-atr_period   = input.int(14, "ATR Period", minval=1)
-atr_mult_up  = input.float(1.5, "Upper ATR Multiplier", step=0.1)
-atr_mult_dn  = input.float(1.5, "Lower ATR Multiplier", step=0.1)
-ema_fast_len = input.int(8, "EMA Fast")
-ema_mid_len  = input.int(21, "EMA Mid")
-ema_slow_len = input.int(34, "EMA Slow")
-show_ribbon  = input.bool(true, "Show EMA Ribbon")
-show_cloud   = input.bool(true, "Show ATR Cloud")
-show_signals = input.bool(true, "Show BUY/SELL Signals")
-
-// ──── ATR TRIGGER CLOUD ────
-atr_val     = ta.atr(atr_period)
-day_open    = request.security(syminfo.tickerid, "D", open)
-upper_cloud = day_open + (atr_val * atr_mult_up)
-lower_cloud = day_open - (atr_val * atr_mult_dn)
-
-upper_plot = plot(show_cloud ? upper_cloud : na, "Upper Trigger", color=color.new(color.red, 60), linewidth=1, style=plot.style_stepline)
-lower_plot = plot(show_cloud ? lower_cloud : na, "Lower Trigger", color=color.new(color.green, 60), linewidth=1, style=plot.style_stepline)
-fill(upper_plot, lower_plot, color=color.new(color.gray, 92), title="ATR Zone Fill")
-
-// ──── EMA RIBBON ────
-ema_fast = ta.ema(close, ema_fast_len)
-ema_mid  = ta.ema(close, ema_mid_len)
-ema_slow = ta.ema(close, ema_slow_len)
-
-plot(show_ribbon ? ema_fast : na, "EMA Fast", color=color.new(color.green, 20), linewidth=2)
-plot(show_ribbon ? ema_mid  : na, "EMA Mid",  color=color.new(color.aqua, 30), linewidth=1)
-plot(show_ribbon ? ema_slow : na, "EMA Slow", color=color.new(color.orange, 30), linewidth=1)
-
-ribbon_bull = ema_fast > ema_mid and ema_mid > ema_slow
-ribbon_bear = ema_fast < ema_mid and ema_mid < ema_slow
-
-// ──── PRIOR CLOSE ────
-prev_close = request.security(syminfo.tickerid, "D", close[1])
-plot(prev_close, "Prior Close", color=color.new(color.yellow, 40), linewidth=1, style=plot.style_stepline)
-
-// ──── ICHIMOKU BASELINE ────
-kijun = ta.ema(math.avg(ta.highest(26), ta.lowest(26)), 1)
-plot(kijun, "Kijun-Sen", color=color.new(color.purple, 30), linewidth=1)
-
-// ──── CONVICTION SCORE ────
-score = 0.0
-score += ribbon_bull ? 0.20 : 0.0
-score += close > upper_cloud ? 0.20 : (close < lower_cloud ? -0.20 : 0.0)
-score += volume > ta.sma(volume, 20) * 1.5 ? 0.15 : 0.0
-score += ta.rsi(close, 14) > 40 and ta.rsi(close, 14) < 75 ? 0.15 : 0.0
-score += close > kijun ? 0.15 : 0.0
-score += close > prev_close ? 0.15 : 0.0
-
-// ──── SIGNALS ────
-buy_signal  = score >= 0.70 and score[1] < 0.70
-sell_signal = score <= -0.30 and score[1] > -0.30
-
-plotshape(show_signals and buy_signal,  style=shape.triangleup,   location=location.belowbar, color=color.green, size=size.small, text="BUY",  textcolor=color.green)
-plotshape(show_signals and sell_signal, style=shape.triangledown, location=location.abovebar, color=color.red,   size=size.small, text="SELL", textcolor=color.red)
-
-// ──── ALERTS ────
-alertcondition(buy_signal,  "Quant BUY Signal",  "QuantRead: BUY signal fired on {{ticker}}")
-alertcondition(sell_signal, "Quant SELL Signal", "QuantRead: SELL signal fired on {{ticker}}")
-
-// ──── DATA TABLE ────
-var table panel = table.new(position.top_right, 2, 8, border_width=1)
-if barstate.islast
-    grade = score >= 0.85 ? "S" : score >= 0.70 ? "A" : score >= 0.55 ? "B" : score >= 0.40 ? "C" : "D"
-    grade_col = score >= 0.70 ? color.green : score >= 0.55 ? color.yellow : color.red
-    table.cell(panel, 0, 0, "Quant v2",       text_color=color.aqua,   bgcolor=color.new(color.black, 30), text_size=size.small)
-    table.cell(panel, 1, 0, "",                bgcolor=color.new(color.black, 30))
-    table.cell(panel, 0, 1, "ATR (14)",        text_color=color.gray,   bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 1, 1, str.tostring(atr_val, "#.##"), text_color=color.white, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 0, 2, "Vol State",       text_color=color.gray,   bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 1, 2, volume > ta.sma(volume,20)*2 ? "HIGH" : "NORMAL", text_color=volume > ta.sma(volume,20)*2 ? color.green : color.gray, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 0, 3, "Trend",           text_color=color.gray,   bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 1, 3, ribbon_bull ? "BULL" : ribbon_bear ? "BEAR" : "FLAT", text_color=ribbon_bull ? color.green : ribbon_bear ? color.red : color.gray, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 0, 4, "Trigger Dir",     text_color=color.gray,   bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 1, 4, close > upper_cloud ? "UP" : close < lower_cloud ? "DOWN" : "NEUTRAL", text_color=close > upper_cloud ? color.green : close < lower_cloud ? color.red : color.yellow, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 0, 5, "Conviction",      text_color=color.gray,   bgcolor=color.new(color.black, 30), text_size=size.tiny)
-    table.cell(panel, 1, 5, grade, text_color=grade_col, bgcolor=color.new(color.black, 30), text_size=size.small)
-`;
-
-const convictionHistogramCode = `// ═══════════════════════════════════════════════════════════
-// Quant Conviction Histogram — QuantRead © 2026
-// Full Pine Script™ source code — modify freely
-// ═══════════════════════════════════════════════════════════
-
-//@version=6
-indicator("Quant Conviction Histogram", overlay=false)
-
-// ──── INPUTS ────
-atr_period = input.int(14, "ATR Period")
-vol_mult   = input.float(1.5, "Volume Multiplier", step=0.1)
-
-// ──── FACTOR CALCULATIONS ────
-// Factor 1: EMA Ribbon Alignment
-ema_fast = ta.ema(close, 8)
-ema_mid  = ta.ema(close, 21)
-ema_slow = ta.ema(close, 34)
-f_ribbon = ema_fast > ema_mid and ema_mid > ema_slow ? 1.0 : ema_fast < ema_mid and ema_mid < ema_slow ? -1.0 : 0.0
-
-// Factor 2: ATR Cloud Position
-atr_val     = ta.atr(atr_period)
-day_open    = request.security(syminfo.tickerid, "D", open)
-upper_cloud = day_open + (atr_val * 1.5)
-lower_cloud = day_open - (atr_val * 1.5)
-f_atr = close > upper_cloud ? 1.0 : close < lower_cloud ? -1.0 : 0.0
-
-// Factor 3: Volume Surge
-f_volume = volume > ta.sma(volume, 20) * vol_mult ? 1.0 : 0.0
-
-// Factor 4: RSI Health
-rsi_val = ta.rsi(close, 14)
-f_rsi = rsi_val > 40 and rsi_val < 75 ? 1.0 : rsi_val >= 75 ? -0.5 : -0.5
-
-// Factor 5: Ichimoku Baseline
-kijun = ta.ema(math.avg(ta.highest(26), ta.lowest(26)), 1)
-f_ichimoku = close > kijun ? 1.0 : -1.0
-
-// Factor 6: Gap Direction
-prev_close = request.security(syminfo.tickerid, "D", close[1])
-f_gap = close > prev_close ? 1.0 : -1.0
-
-// Factor 7: Catalyst (volume + gap convergence)
-f_catalyst = math.abs(close - day_open) / day_open > 0.005 and volume > ta.sma(volume, 20) * 2 ? 1.0 : 0.0
-
-// ──── COMPOSITE SCORE ────
-weights = array.from(0.20, 0.20, 0.15, 0.10, 0.10, 0.10, 0.15)
-factors = array.from(f_ribbon, f_atr, f_volume, f_rsi, f_ichimoku, f_gap, f_catalyst)
-
-score = 0.0
-for i = 0 to array.size(weights) - 1
-    score += array.get(weights, i) * array.get(factors, i)
-
-// ──── GRADE ────
-grade = score >= 0.85 ? "S" : score >= 0.70 ? "A" : score >= 0.55 ? "B" : score >= 0.40 ? "C" : "D"
-
-// ──── VISUALIZATION ────
-bar_color = score >= 0.70 ? color.green : score >= 0.40 ? color.yellow : color.red
-plot(score, "Conviction Score", color=bar_color, style=plot.style_histogram, linewidth=4)
-hline(0.70, "A-Grade Threshold", color=color.new(color.green, 60), linestyle=hline.style_dashed)
-hline(0.40, "C-Grade Threshold", color=color.new(color.yellow, 60), linestyle=hline.style_dashed)
-hline(0.0,  "Zero Line",        color=color.new(color.gray, 70))
-
-// ──── FACTOR BREAKDOWN TABLE ────
-var table ftable = table.new(position.bottom_right, 3, 8, border_width=1)
-if barstate.islast
-    headers = array.from("Factor", "Value", "Weight")
-    names   = array.from("EMA Ribbon", "ATR Cloud", "Volume", "RSI", "Ichimoku", "Gap", "Catalyst")
-    for i = 0 to 2
-        table.cell(ftable, i, 0, array.get(headers, i), text_color=color.aqua, bgcolor=color.new(color.black, 20), text_size=size.tiny)
-    for i = 0 to array.size(names) - 1
-        fc = array.get(factors, i)
-        table.cell(ftable, 0, i+1, array.get(names, i), text_color=color.gray, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-        table.cell(ftable, 1, i+1, fc >= 0.5 ? "✓" : fc <= -0.5 ? "✕" : "—", text_color=fc >= 0.5 ? color.green : fc <= -0.5 ? color.red : color.yellow, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-        table.cell(ftable, 2, i+1, str.tostring(array.get(weights, i) * 100, "#") + "%", text_color=color.gray, bgcolor=color.new(color.black, 30), text_size=size.tiny)
-
-// ──── ALERTS ────
-alertcondition(ta.crossover(score, 0.70), "Conviction A+", "QuantRead: Conviction crossed A-grade on {{ticker}}")
-alertcondition(ta.crossunder(score, 0.40), "Conviction Drop", "QuantRead: Conviction dropped below C on {{ticker}}")
-`;
-
-/* ─── CopyButton Component ────────────────────────────────────────────────── */
+/* CopyButton Component */
 function CopyButton({ text, label }: { text: string; label: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -396,3 +228,5 @@ export default function ThankYouPage() {
     </main>
   );
 }
+
+

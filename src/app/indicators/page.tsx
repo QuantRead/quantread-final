@@ -106,7 +106,7 @@ export default function IndicatorsPage() {
               <h3 className="text-xl font-bold mb-1">Quant Model Visualizer</h3>
               <p className="text-xs font-bold mb-5 tracking-widest uppercase" style={{ color: '#4B9EFF' }}>On-Chart Overlay</p>
               <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                See exactly where the engine would fire. ATR-scaled trigger zones paint dynamically around price, while the multi-timeframe EMA ribbon confirms trend structure at a glance.
+                See the execution-facing Quant trigger, the daily map channels, and the 1H ribbon in one view. It is meant to mirror the live engine&apos;s chart logic, not just decorate the screen.
               </p>
               <ul className="space-y-3">
                 {[
@@ -130,7 +130,7 @@ export default function IndicatorsPage() {
               <h3 className="text-xl font-bold mb-1">Quant Conviction Histogram</h3>
               <p className="text-xs font-bold mb-5 tracking-widest uppercase" style={{ color: 'var(--qr-gold)' }}>Sub-Pane Indicator</p>
               <p className="text-sm mb-6 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                The factor breakdown behind each alert grade. Watch conviction build bar-by-bar as each independent factor - volume, ATR, gap, catalyst, RSI - fires or fails.
+                The factor stack behind each alert grade. Watch conviction build bar-by-bar as cloud state, volatility, ribbon structure, time-of-day, catalyst pressure, Ichimoku, and RSI all push the score around.
               </p>
               <ul className="space-y-3">
                 {[
@@ -172,27 +172,18 @@ export default function IndicatorsPage() {
 `}<span style={{ color: '#4B9EFF' }}>//@version=6</span>{`
 `}<span style={{ color: '#d4af37' }}>indicator</span>{`(`}<span style={{ color: '#4ade80' }}>&quot;Quant Model Visualizer&quot;</span>{`, overlay=`}<span style={{ color: '#4B9EFF' }}>true</span>{`)
 
-`}<span style={{ color: '#444466' }}>// ATR Trigger Cloud</span>{`
-atr_period  = `}<span style={{ color: '#d4af37' }}>input.int</span>{`(`}<span style={{ color: '#B04BFF' }}>14</span>{`, `}<span style={{ color: '#4ade80' }}>&quot;ATR Period&quot;</span>{`)
-atr_mult    = `}<span style={{ color: '#d4af37' }}>input.float</span>{`(`}<span style={{ color: '#B04BFF' }}>1.5</span>{`, `}<span style={{ color: '#4ade80' }}>&quot;ATR Multiplier&quot;</span>{`)
-atr_val     = `}<span style={{ color: '#d4af37' }}>ta.atr</span>{`(atr_period)
-upper_cloud = open + (atr_val * atr_mult)
-lower_cloud = open - (atr_val * atr_mult)
+`}<span style={{ color: '#444466' }}>// Quant execution trigger (prev close ± fib × daily ATR)</span>{`
+dailyATR     = `}<span style={{ color: '#d4af37' }}>request.security</span>{`(syminfo.tickerid, `}<span style={{ color: '#4ade80' }}>&quot;D&quot;</span>{`, ta.atr(`}<span style={{ color: '#B04BFF' }}>14</span>{`))
+upperTrigger = prevClose + (`}<span style={{ color: '#B04BFF' }}>0.146</span>{` * dailyATR)
 
-`}<span style={{ color: '#444466' }}>// EMA Ribbon (8/21/34)</span>{`
-ema_fast = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>8</span>{`)
-ema_mid  = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>21</span>{`)
-ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>34</span>{`)
-ribbon_bull = ema_fast > ema_mid `}<span style={{ color: '#4B9EFF' }}>and</span>{` ema_mid > ema_slow
+`}<span style={{ color: '#444466' }}>// Quant daily map channels</span>{`
+mapLookbackBars = `}<span style={{ color: '#d4af37' }}>input.int</span>{`(`}<span style={{ color: '#B04BFF' }}>156</span>{`, `}<span style={{ color: '#4ade80' }}>&quot;Auto swing lookback bars&quot;</span>{`)
+mapFib500 = mapEndPrice + ((mapStartPrice - mapEndPrice) * `}<span style={{ color: '#B04BFF' }}>0.500</span>{`)
 
-`}<span style={{ color: '#444466' }}>// Conviction Score</span>{`
-score = `}<span style={{ color: '#B04BFF' }}>0.0</span>{`
-score += ribbon_bull ? `}<span style={{ color: '#B04BFF' }}>0.3</span>{` : `}<span style={{ color: '#B04BFF' }}>0.0</span>{`
-score += close > upper_cloud ? `}<span style={{ color: '#B04BFF' }}>0.4</span>{` : `}<span style={{ color: '#B04BFF' }}>0.0</span>{`
-score += volume > `}<span style={{ color: '#d4af37' }}>ta.sma</span>{`(volume, `}<span style={{ color: '#B04BFF' }}>20</span>{`) * `}<span style={{ color: '#B04BFF' }}>2</span>{` ? `}<span style={{ color: '#B04BFF' }}>0.3</span>{` : `}<span style={{ color: '#B04BFF' }}>0.0</span>{`
+`}<span style={{ color: '#444466' }}>// BUY gate</span>{`
+buyFire = triggerCross `}<span style={{ color: '#4B9EFF' }}>and</span>{` isBullishConfirm `}<span style={{ color: '#4B9EFF' }}>and</span>{` rvolGatePass
 
-`}<span style={{ color: '#d4af37' }}>plotshape</span>{`(score >= `}<span style={{ color: '#B04BFF' }}>0.7</span>{`, style=shape.triangleup,
-         color=`}<span style={{ color: '#d4af37' }}>color.green</span>{`, text=`}<span style={{ color: '#4ade80' }}>&quot;BUY&quot;</span>{`)`}</code>
+`}<span style={{ color: '#d4af37' }}>alertcondition</span>{`(buyFire, `}<span style={{ color: '#4ade80' }}>&quot;Quant BUY Signal&quot;</span>{`, ... )`}</code>
             </pre>
           </div>
         </div>

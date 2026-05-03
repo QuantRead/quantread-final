@@ -515,7 +515,7 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold mb-1">Quant Model Visualizer</h3>
               <p className="text-xs font-bold mb-4 tracking-widest uppercase" style={{ color: '#4B9EFF' }}>On-Chart Overlay</p>
               <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                See exactly where the engine would fire. ATR-scaled trigger zones paint dynamically around price, while the multi-timeframe EMA ribbon confirms trend structure at a glance.
+                See the execution-facing Quant trigger, the daily map channels, and the 1H ribbon in one view. It is the chart-side companion to the live engine, not a generic overlay dressed up with nice colors.
               </p>
               <ul className="space-y-2.5">
                 {[
@@ -538,7 +538,7 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold mb-1">Quant Conviction Histogram</h3>
               <p className="text-xs font-bold mb-4 tracking-widest uppercase" style={{ color: 'var(--qr-gold)' }}>Sub-Pane Indicator</p>
               <p className="text-sm mb-5 leading-relaxed" style={{ color: 'var(--qr-text-muted)' }}>
-                The factor breakdown behind each alert grade. Watch conviction build bar-by-bar as each independent factor - volume, ATR, gap, catalyst, RSI - fires or fails.
+                The factor stack behind each alert grade. Watch conviction build bar-by-bar as cloud state, volatility, ribbon structure, time-of-day, catalyst pressure, Ichimoku, and RSI all push the score around.
               </p>
               <ul className="space-y-2.5">
                 {[
@@ -567,17 +567,18 @@ export default function LandingPage() {
 `}<span style={{ color: '#4B9EFF' }}>//@version=6</span>{`
 `}<span style={{ color: '#d4af37' }}>indicator</span>{`(`}<span style={{ color: '#4ade80' }}>&quot;Quant Model Visualizer&quot;</span>{`, overlay=`}<span style={{ color: '#4B9EFF' }}>true</span>{`)
 
-`}<span style={{ color: '#444466' }}>// ATR Trigger Cloud</span>{`
-atr_val     = `}<span style={{ color: '#d4af37' }}>ta.atr</span>{`(`}<span style={{ color: '#B04BFF' }}>14</span>{`)
-upper_cloud = open + (atr_val * `}<span style={{ color: '#B04BFF' }}>1.5</span>{`)
+`}<span style={{ color: '#444466' }}>// Quant execution trigger (prev close ± fib × daily ATR)</span>{`
+dailyATR    = `}<span style={{ color: '#d4af37' }}>request.security</span>{`(syminfo.tickerid, `}<span style={{ color: '#4ade80' }}>&quot;D&quot;</span>{`, ta.atr(`}<span style={{ color: '#B04BFF' }}>14</span>{`))
+upperTrigger = prevClose + (`}<span style={{ color: '#B04BFF' }}>0.146</span>{` * dailyATR)
 
-`}<span style={{ color: '#444466' }}>// EMA Ribbon (8/21/34)</span>{`
-ema_fast = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>8</span>{`)
-ema_mid  = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>21</span>{`)
-ema_slow = `}<span style={{ color: '#d4af37' }}>ta.ema</span>{`(close, `}<span style={{ color: '#B04BFF' }}>34</span>{`)
+`}<span style={{ color: '#444466' }}>// Quant daily map channels</span>{`
+mapLookbackBars = `}<span style={{ color: '#d4af37' }}>input.int</span>{`(`}<span style={{ color: '#B04BFF' }}>156</span>{`, `}<span style={{ color: '#4ade80' }}>&quot;Auto swing lookback bars&quot;</span>{`)
+mapFib500 = mapEndPrice + ((mapStartPrice - mapEndPrice) * `}<span style={{ color: '#B04BFF' }}>0.500</span>{`)
 
-`}<span style={{ color: '#d4af37' }}>plotshape</span>{`(score >= `}<span style={{ color: '#B04BFF' }}>0.7</span>{`, style=shape.triangleup,
-         color=`}<span style={{ color: '#d4af37' }}>color.green</span>{`, text=`}<span style={{ color: '#4ade80' }}>&quot;BUY&quot;</span>{`)`}</code>
+`}<span style={{ color: '#444466' }}>// BUY gate</span>{`
+buyFire = triggerCross `}<span style={{ color: '#4B9EFF' }}>and</span>{` isBullishConfirm `}<span style={{ color: '#4B9EFF' }}>and</span>{` rvolGatePass
+
+`}<span style={{ color: '#d4af37' }}>alertcondition</span>{`(buyFire, `}<span style={{ color: '#4ade80' }}>&quot;Quant BUY Signal&quot;</span>{`, ... )`}</code>
             </pre>
           </div>
 
