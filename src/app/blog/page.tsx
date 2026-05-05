@@ -1,0 +1,78 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "QuantRead Blog | Trading Setup Quality and Ticker Grader Workflows",
+  description:
+    "Blunt trading education from QuantRead on setup quality, scanner sanity checks, Ticker Grader workflows, trend, volume, RSI, ATR, and relative strength.",
+  alternates: {
+    canonical: "https://quantread.app/blog",
+  },
+  openGraph: {
+    title: "QuantRead Blog",
+    description:
+      "Trading setup quality, scanner sanity checks, and practical Ticker Grader workflows.",
+    url: "https://quantread.app/blog",
+    type: "website",
+  },
+};
+
+export default function BlogPage() {
+  return (
+    <main className="min-h-screen" style={{ background: "var(--qr-bg)", color: "var(--qr-text)" }}>
+      <section className="relative overflow-hidden border-b" style={{ borderColor: "var(--qr-border)" }}>
+        <div className="absolute inset-0 grid-pattern opacity-40" />
+        <div className="absolute inset-0 hero-glow" />
+        <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-10">
+          <nav className="mb-20 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <Link href="/" className="flex items-center gap-2">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg text-sm font-black" style={{ background: "var(--qr-gold)", color: "var(--qr-bg)" }}>Q</span>
+              <span className="text-lg font-bold tracking-tight">QuantRead</span>
+            </Link>
+            <div className="flex flex-wrap items-center gap-5 text-sm" style={{ color: "var(--qr-text-muted)" }}>
+              <Link href="/" className="transition-colors hover:text-white">Home</Link>
+              <a href="https://quantread-ticker-grader.onrender.com" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Ticker Grader</a>
+              <Link href="/indicators" className="transition-colors hover:text-white">Indicators</Link>
+            </div>
+          </nav>
+
+          <div className="max-w-4xl">
+            <p className="mb-5 text-xs font-black uppercase tracking-[0.22em]" style={{ color: "var(--qr-gold)" }}>QuantRead Blog</p>
+            <h1 className="mb-6 text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
+              Trading setup quality without the scanner circus.
+            </h1>
+            <p className="max-w-2xl text-lg leading-8" style={{ color: "var(--qr-text-muted)" }}>
+              Blunt trading education for people trying to decide whether a hot ticker is actually worth attention, or just blinking loudly in the corner like a slot machine with a brokerage account.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
+        <Link
+          href="/blog/how-do-i-know-if-a-stock-is-actually-a-good-day-trade-setup"
+          className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
+          style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
+        >
+          <div className="mb-6 flex flex-wrap gap-2">
+            {["Day trading", "Setup quality", "Ticker Grader"].map((tag) => (
+              <span key={tag} className="rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h2 className="mb-4 max-w-4xl text-3xl font-black leading-tight tracking-tight md:text-5xl">
+            How Do I Know If a Stock Is Actually a Good Day Trade Setup?
+          </h2>
+          <p className="mb-7 max-w-3xl text-base leading-7" style={{ color: "var(--qr-text-muted)" }}>
+            A hot stock is not automatically a clean trade. Sometimes it is opportunity. Sometimes it is a flaming shopping cart with a ticker symbol taped to the front.
+          </p>
+          <span className="inline-flex items-center text-sm font-black" style={{ color: "var(--qr-gold)" }}>
+            Read the article
+            <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
+          </span>
+        </Link>
+      </section>
+    </main>
+  );
+}

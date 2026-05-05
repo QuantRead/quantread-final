@@ -218,6 +218,7 @@ export default function LandingPage() {
             <a href="#plans" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Plans</a>
             <a href="https://quantread-ticker-grader.onrender.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Ticker Grader</a>
             <a href="https://quantread-position-sizer.onrender.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Position Sizer</a>
+            <Link href="/blog" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Blog</Link>
             <Link href="/indicators" className="text-sm font-medium transition-colors" style={{ color: 'var(--qr-text-muted)' }} onMouseEnter={e => (e.target as HTMLElement).style.color = 'var(--qr-text)'} onMouseLeave={e => (e.target as HTMLElement).style.color = 'var(--qr-text-muted)'}>Indicators</Link>
             <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="px-5 py-2 rounded-lg text-sm font-semibold transition-all animate-pulse-gold" style={{ background: 'var(--qr-gold)', color: 'var(--qr-bg)' }}>
               Get Access
@@ -712,6 +713,7 @@ buyFire = triggerCross `}<span style={{ color: '#4B9EFF' }}>and</span>{` isBulli
           </div>
           <div className="flex items-center gap-6 text-sm" style={{ color: 'var(--qr-text-dim)' }}>
             <a href={membershipUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Subscribe</a>
+            <Link href="/blog" className="transition-colors hover:text-white">Blog</Link>
             <a href={telegramUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Telegram</a>
             <a href="https://x.com/quantaboreal" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">Twitter/X</a>
           </div>

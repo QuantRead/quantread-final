@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://quantread.app"),
   title: "QuantRead — Intelligence for Modern Traders",
   description:
     "Watchlist alerts, pre-market intelligence briefs, TradingView indicators, and live system transparency powered by a quantitative trading engine.",
@@ -19,6 +20,8 @@ export const metadata: Metadata = {
     "pre-market analysis",
     "TradingView indicators",
     "quantitative trading",
+    "day trading setup quality",
+    "ticker grader",
   ],
   icons: {
     icon: "/favicon.ico",
