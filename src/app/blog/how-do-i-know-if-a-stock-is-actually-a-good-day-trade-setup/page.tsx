@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 const articleUrl = "https://quantread.app/blog/how-do-i-know-if-a-stock-is-actually-a-good-day-trade-setup";
@@ -16,6 +17,21 @@ export const metadata: Metadata = {
       "A hot stock is not automatically a clean trade. Sometimes it is opportunity. Sometimes it is a flaming shopping cart with a ticker symbol taped to the front.",
     url: articleUrl,
     type: "article",
+    images: [
+      {
+        url: "/chart_preview.png",
+        width: 1024,
+        height: 1024,
+        alt: "QuantRead chart preview showing the kind of trend and setup context used before grading a ticker.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How Do I Know If a Stock Is Actually a Good Day Trade Setup?",
+    description:
+      "A blunt, practical guide to checking whether a hot stock is actually a clean day trade setup.",
+    images: ["/chart_preview.png"],
   },
 };
 
@@ -69,6 +85,20 @@ export default function FirstBlogArticlePage() {
               </span>
             ))}
           </div>
+          <figure className="mt-10 overflow-hidden rounded-2xl border" style={{ borderColor: "var(--qr-border)", background: "var(--qr-surface)" }}>
+            <Image
+              src="/chart_preview.png"
+              alt="QuantRead chart preview showing trend, trigger, and setup-quality context before a ticker is graded."
+              width={1024}
+              height={1024}
+              priority
+              className="h-auto w-full"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
+            <figcaption className="border-t px-5 py-3 text-sm leading-6" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
+              Setup quality is not one candle doing cardio. It is trend, volume, range, momentum, and context agreeing enough to deserve a second look.
+            </figcaption>
+          </figure>
         </header>
 
         <div className="space-y-6 text-[1.05rem] leading-8">

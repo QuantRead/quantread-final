@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -14,6 +15,21 @@ export const metadata: Metadata = {
       "Trading setup quality, scanner sanity checks, and practical Ticker Grader workflows.",
     url: "https://quantread.app/blog",
     type: "website",
+    images: [
+      {
+        url: "/chart_preview.png",
+        width: 1024,
+        height: 1024,
+        alt: "QuantRead chart preview for trading setup-quality education.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "QuantRead Blog",
+    description:
+      "Trading setup quality, scanner sanity checks, and practical Ticker Grader workflows.",
+    images: ["/chart_preview.png"],
   },
 };
 
@@ -60,6 +76,16 @@ export default function BlogPage() {
                 {tag}
               </span>
             ))}
+          </div>
+          <div className="mb-7 overflow-hidden rounded-xl border" style={{ borderColor: "var(--qr-border)" }}>
+            <Image
+              src="/chart_preview.png"
+              alt="QuantRead chart preview for evaluating whether a hot ticker has clean setup quality."
+              width={1024}
+              height={1024}
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 768px) 100vw, 960px"
+            />
           </div>
           <h2 className="mb-4 max-w-4xl text-3xl font-black leading-tight tracking-tight md:text-5xl">
             How Do I Know If a Stock Is Actually a Good Day Trade Setup?
