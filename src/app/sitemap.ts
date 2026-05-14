@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://quantread.app/blog/what-a-bad-market-open-taught-us-about-building-a-trading-bot",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: "https://quantread.app/blog/how-do-i-know-if-a-stock-is-actually-a-good-day-trade-setup",
       lastModified: new Date(),
       changeFrequency: "monthly",

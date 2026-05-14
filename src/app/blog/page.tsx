@@ -5,14 +5,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "QuantRead Blog | Trading Setup Quality and Ticker Grader Workflows",
   description:
-    "Blunt trading education from QuantRead on setup quality, scanner sanity checks, Ticker Grader workflows, trend, volume, RSI, ATR, and relative strength.",
+    "Blunt trading education from QuantRead on setup quality, scanner sanity checks, execution readiness, Ticker Grader workflows, trend, volume, RSI, ATR, and relative strength.",
   alternates: {
     canonical: "https://quantread.app/blog",
   },
   openGraph: {
     title: "QuantRead Blog",
     description:
-      "Trading setup quality, scanner sanity checks, and practical Ticker Grader workflows.",
+      "Trading setup quality, scanner sanity checks, execution readiness, and practical Ticker Grader workflows.",
     url: "https://quantread.app/blog",
     type: "website",
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "QuantRead Blog",
     description:
-      "Trading setup quality, scanner sanity checks, and practical Ticker Grader workflows.",
+      "Trading setup quality, scanner sanity checks, execution readiness, and practical Ticker Grader workflows.",
     images: ["/chart_preview.png"],
   },
 };
@@ -64,7 +64,41 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section className="mx-auto grid max-w-6xl gap-8 px-6 py-16">
+        <Link
+          href="/blog/what-a-bad-market-open-taught-us-about-building-a-trading-bot"
+          className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
+          style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
+        >
+          <div className="mb-6 flex flex-wrap gap-2">
+            {["Algo trading", "Execution readiness", "Market open"].map((tag) => (
+              <span key={tag} className="rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="mb-7 overflow-hidden rounded-xl border" style={{ borderColor: "var(--qr-border)" }}>
+            <Image
+              src="/institutional_dashboard.png"
+              alt="QuantRead dashboard used for scanner and execution readiness review."
+              width={1536}
+              height={1024}
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 768px) 100vw, 960px"
+            />
+          </div>
+          <h2 className="mb-4 max-w-4xl text-3xl font-black leading-tight tracking-tight md:text-5xl">
+            What Did A Bad Market Open Teach Us About Building A Trading Bot?
+          </h2>
+          <p className="mb-7 max-w-3xl text-base leading-7" style={{ color: "var(--qr-text-muted)" }}>
+            A build-in-public postmortem on scanner grades, Schwab auth, market open speed, dirty setups, and the launch-lane model that came out of it.
+          </p>
+          <span className="inline-flex items-center text-sm font-black" style={{ color: "var(--qr-gold)" }}>
+            Read the case study
+            <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
+          </span>
+        </Link>
+
         <Link
           href="/blog/how-do-i-know-if-a-stock-is-actually-a-good-day-trade-setup"
           className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
