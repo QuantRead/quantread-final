@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://quantread.app/blog/the-day-the-system-closed-the-loop",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: "https://quantread.app/blog/the-dna-of-a-winner",
       lastModified: new Date(),
       changeFrequency: "monthly",

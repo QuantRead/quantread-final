@@ -1,0 +1,71 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">QuantRead May 18 trade recap</title>
+  <desc id="desc">Four green trade receipts: UBER, PLTR, CVNA, and MSFT for a total realized P and L of 30.57 dollars.</desc>
+  <rect width="1200" height="720" fill="#070A0F"/>
+  <path d="M0 0H1200V720H0V0Z" fill="url(#bg)"/>
+  <path d="M72 102H1128V618H72V102Z" fill="#0E141E" stroke="#243244" stroke-width="2"/>
+  <path d="M72 102H1128V210H72V102Z" fill="#111B2A"/>
+  <text x="110" y="154" fill="#D4AF37" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="800" letter-spacing="4">QUANTREAD LIVE TRADE RECAP</text>
+  <text x="110" y="192" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="900">May 18: The loop closed</text>
+  <text x="876" y="148" fill="#7EE7B8" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="900">+$30.57</text>
+  <text x="882" y="181" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700">realized after repair</text>
+
+  <g transform="translate(110 258)">
+    <text x="0" y="-24" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">Closed trade receipts</text>
+    <text x="0" y="10" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="15">Result size mattered less than process: the system selected winners, exits fired, and accounting matched broker truth.</text>
+
+    <g transform="translate(0 60)">
+      <text x="0" y="20" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">CVNA</text>
+      <text x="92" y="20" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="16">7:07 PT to 7:15 PT</text>
+      <rect x="0" y="40" width="650" height="42" rx="8" fill="#142132"/>
+      <rect x="0" y="40" width="650" height="42" rx="8" fill="#2FE18D"/>
+      <text x="670" y="69" fill="#7EE7B8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">+$21.38</text>
+      <text x="810" y="69" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="15">+1.26%</text>
+    </g>
+
+    <g transform="translate(0 150)">
+      <text x="0" y="20" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">PLTR</text>
+      <text x="92" y="20" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="16">7:05 PT to 7:07 PT</text>
+      <rect x="0" y="40" width="650" height="42" rx="8" fill="#142132"/>
+      <rect x="0" y="40" width="151" height="42" rx="8" fill="#2FE18D"/>
+      <text x="670" y="69" fill="#7EE7B8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">+$4.95</text>
+      <text x="810" y="69" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="15">+0.20%</text>
+    </g>
+
+    <g transform="translate(0 240)">
+      <text x="0" y="20" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">UBER</text>
+      <text x="92" y="20" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="16">6:48 PT to 7:19 PT</text>
+      <rect x="0" y="40" width="650" height="42" rx="8" fill="#142132"/>
+      <rect x="0" y="40" width="108" height="42" rx="8" fill="#2FE18D"/>
+      <text x="670" y="69" fill="#7EE7B8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">+$3.54</text>
+      <text x="810" y="69" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="15">+0.14%</text>
+    </g>
+
+    <g transform="translate(0 330)">
+      <text x="0" y="20" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900">MSFT</text>
+      <text x="92" y="20" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="16">11:25 PT to 11:31 PT</text>
+      <rect x="0" y="40" width="650" height="42" rx="8" fill="#142132"/>
+      <rect x="0" y="40" width="22" height="42" rx="8" fill="#2FE18D"/>
+      <text x="670" y="69" fill="#7EE7B8" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900">+$0.70</text>
+      <text x="810" y="69" fill="#A8B3C7" font-family="Arial, Helvetica, sans-serif" font-size="15">+0.04%</text>
+    </g>
+  </g>
+
+  <g transform="translate(790 275)">
+    <rect x="0" y="0" width="280" height="250" rx="16" fill="#0A111B" stroke="#243244"/>
+    <text x="24" y="42" fill="#D4AF37" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="900" letter-spacing="2">COMMON DNA</text>
+    <text x="24" y="82" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="900">Early band</text>
+    <text x="24" y="115" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="900">Room to target</text>
+    <text x="24" y="148" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="900">Daily open aligned</text>
+    <text x="24" y="181" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="900">VWAP support</text>
+    <text x="24" y="214" fill="#F4F7FB" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="900">Broker truth repaired</text>
+  </g>
+
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 100) rotate(136) scale(760 480)">
+      <stop stop-color="#183A31" stop-opacity="0.9"/>
+      <stop offset="0.48" stop-color="#101827" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#070A0F" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+</svg>
