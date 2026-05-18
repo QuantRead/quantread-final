@@ -71,7 +71,7 @@ export default function BlogPage() {
           style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
         >
           <div className="mb-6 flex flex-wrap gap-2">
-            {["Live trading", "Trade recap", "Execution plumbing"].map((tag) => (
+            {["Bear tape", "Long selection", "Trade recap"].map((tag) => (
               <span key={tag} className="rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
                 {tag}
               </span>
@@ -89,10 +89,10 @@ export default function BlogPage() {
             />
           </div>
           <h2 className="mb-4 max-w-4xl text-3xl font-black leading-tight tracking-tight md:text-5xl">
-            The Day The System Closed The Loop
+            Four Long Needles In An Intraday Bear Tape
           </h2>
           <p className="mb-7 max-w-3xl text-base leading-7" style={{ color: "var(--qr-text-muted)" }}>
-            A May 18 build-in-public trading recap: four green receipts, repaired broker-position truth, and what UBER, PLTR, CVNA, and MSFT taught the system.
+            A May 18 build-in-public recap of the system finding UBER, PLTR, CVNA, and MSFT as long-side winners inside an unfriendly intraday market.
           </p>
           <span className="inline-flex items-center text-sm font-black" style={{ color: "var(--qr-gold)" }}>
             Read the trading recap
