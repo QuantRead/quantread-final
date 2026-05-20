@@ -66,6 +66,42 @@ export default function BlogPage() {
 
       <section className="mx-auto grid max-w-6xl gap-8 px-6 py-16">
         <Link
+          href="/blog/from-dirty-winner-to-coherent-edge"
+          className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
+          style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
+        >
+          <div className="mb-6 flex flex-wrap gap-2">
+            {["Route contract", "Replay proof", "Build in public"].map((tag) => (
+              <span key={tag} className="rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="mb-7 overflow-hidden rounded-xl border" style={{ borderColor: "var(--qr-border)" }}>
+            <Image
+              src="/route-evolution-2026-05-19.svg"
+              alt="QuantRead route evolution showing the move from dirty winners to a coherent route contract."
+              width={1200}
+              height={760}
+              unoptimized
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 768px) 100vw, 960px"
+            />
+          </div>
+          <h2 className="mb-4 max-w-4xl text-3xl font-black leading-tight tracking-tight md:text-5xl">
+            From Dirty Winner To Coherent Edge
+          </h2>
+          <p className="mb-7 max-w-3xl text-base leading-7" style={{ color: "var(--qr-text-muted)" }}>
+            A detailed build-in-public breakdown of how the system moved from yesterday&apos;s profitable but messy
+            shape, into today&apos;s contradictory loser, and then into a route-owned execution contract.
+          </p>
+          <span className="inline-flex items-center text-sm font-black" style={{ color: "var(--qr-gold)" }}>
+            Read the route evolution
+            <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
+          </span>
+        </Link>
+
+        <Link
           href="/blog/the-day-the-system-closed-the-loop"
           className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
           style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
