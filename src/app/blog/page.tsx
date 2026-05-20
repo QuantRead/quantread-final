@@ -66,6 +66,41 @@ export default function BlogPage() {
 
       <section className="mx-auto grid max-w-6xl gap-8 px-6 py-16">
         <Link
+          href="/blog/four-green-receipts-one-honest-autopsy"
+          className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
+          style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
+        >
+          <div className="mb-6 flex flex-wrap gap-2">
+            {["Live receipts", "System grade", "Trade autopsy"].map((tag) => (
+              <span key={tag} className="rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="mb-7 overflow-hidden rounded-xl border" style={{ borderColor: "var(--qr-border)" }}>
+            <Image
+              src="/trade-autopsy-2026-05-20.svg"
+              alt="QuantRead May 20 live trade autopsy showing four green receipts."
+              width={1200}
+              height={760}
+              unoptimized
+              className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              sizes="(max-width: 768px) 100vw, 960px"
+            />
+          </div>
+          <h2 className="mb-4 max-w-4xl text-3xl font-black leading-tight tracking-tight md:text-5xl">
+            Four Green Receipts, One Honest Autopsy
+          </h2>
+          <p className="mb-7 max-w-3xl text-base leading-7" style={{ color: "var(--qr-text-muted)" }}>
+            A May 20 post-market autopsy: four live long entries, four green closes, no open broker positions, and a blunt grade on what still needs work.
+          </p>
+          <span className="inline-flex items-center text-sm font-black" style={{ color: "var(--qr-gold)" }}>
+            Read the autopsy
+            <span className="ml-2 transition-transform group-hover:translate-x-1">-&gt;</span>
+          </span>
+        </Link>
+
+        <Link
           href="/blog/from-dirty-winner-to-coherent-edge"
           className="group block rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 md:p-10"
           style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}

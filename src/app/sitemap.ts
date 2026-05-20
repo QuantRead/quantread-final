@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://quantread.app/blog/four-green-receipts-one-honest-autopsy",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.84,
+    },
+    {
       url: "https://quantread.app/blog/from-dirty-winner-to-coherent-edge",
       lastModified: new Date(),
       changeFrequency: "monthly",
