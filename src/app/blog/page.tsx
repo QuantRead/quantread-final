@@ -71,7 +71,7 @@ export default function BlogPage() {
           style={{ background: "var(--qr-surface)", borderColor: "var(--qr-border)" }}
         >
           <div className="mb-6 flex flex-wrap gap-2">
-            {["Live receipts", "System grade", "Trade autopsy"].map((tag) => (
+            {["Live receipts", "DVP timing", "Trade autopsy"].map((tag) => (
               <span key={tag} className="rounded-full border px-3 py-1 text-xs font-bold" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}>
                 {tag}
               </span>
@@ -92,7 +92,7 @@ export default function BlogPage() {
             Four Green Receipts, One Honest Autopsy
           </h2>
           <p className="mb-7 max-w-3xl text-base leading-7" style={{ color: "var(--qr-text-muted)" }}>
-            A May 20 post-market autopsy: four live long entries, four green closes, no open broker positions, and a blunt grade on what still needs work.
+            A May 20 post-market autopsy: four live long entries, four green closes, no open broker positions, and why the DVP timing model still changed after the win.
           </p>
           <span className="inline-flex items-center text-sm font-black" style={{ color: "var(--qr-gold)" }}>
             Read the autopsy

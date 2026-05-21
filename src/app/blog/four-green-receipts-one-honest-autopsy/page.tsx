@@ -7,14 +7,14 @@ const articleUrl = "https://quantread.app/blog/four-green-receipts-one-honest-au
 export const metadata: Metadata = {
   title: "Four Green Receipts, One Honest Autopsy | QuantRead",
   description:
-    "A build-in-public autopsy of the May 20 QuantRead trading session: four live long entries, four green closes, no open broker positions, and a clear grade on what still needs work.",
+    "A build-in-public autopsy of the May 20 QuantRead trading session: four green live trades, one profitable day, and the DVP timing refinement made after the win.",
   alternates: {
     canonical: articleUrl,
   },
   openGraph: {
     title: "Four Green Receipts, One Honest Autopsy",
     description:
-      "Four green live trades, a flat broker account, and a blunt grade on the system's selection, timing, exits, and observability.",
+      "Four green live trades, a flat broker account, and the reason QuantRead still refined DVP timing after a profitable session.",
     url: articleUrl,
     type: "article",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Four Green Receipts, One Honest Autopsy",
     description:
-      "A practical recap of a profitable but imperfect live trading session.",
+      "A practical recap of a profitable session and the narrow DVP change made after the win.",
     images: ["/trade-autopsy-2026-05-20.svg"],
   },
 };
@@ -114,7 +114,9 @@ const grades = [
 const lessons = [
   "The bot was not blocked from trading. It found, entered, managed, and closed live positions.",
   "The system made money by being selective, not by spraying trades everywhere.",
-  "The biggest miss against the vision was timing. This was a profitable first-hour system today, not a perfect opening-bell system.",
+  "The biggest miss against the vision was timing. This was a profitable first-hour system today, not a perfect opening-lane system.",
+  "A profitable day can still expose a timing flaw. Winning late is good; seeing the same setup earlier is better.",
+  "Neutral DVP needed to be split into neutral-flat and neutral-building so the system stops treating all uncertainty as the same thing.",
   "Market partials and raised stops behaved closer to the intended money-fast model.",
   "Broker truth still matters more than dashboard truth. The autopsy had to use Schwab orders and DB rows to reconstruct the day accurately.",
 ];
@@ -161,10 +163,11 @@ export default function May20AutopsyPage() {
           <p className="max-w-3xl text-lg leading-8" style={{ color: "var(--qr-text-muted)" }}>
             May 20 was not the perfect open-capture day. It was something more modest, but still important:
             the system found four live long trades, closed all four green, and ended flat with direct Schwab
-            positions showing no open exposure.
+            positions showing no open exposure. The honest part is that we still changed the system afterward,
+            because a win can be real and still reveal where the next edge is hiding.
           </p>
           <div className="mt-7 flex flex-wrap gap-2">
-            {["Live broker receipts", "Flat end state", "System grade", "Build in public"].map((tag) => (
+            {["Live broker receipts", "Flat end state", "DVP timing", "Build in public"].map((tag) => (
               <span
                 key={tag}
                 className="rounded-full border px-3 py-1 text-xs font-bold"
@@ -193,7 +196,8 @@ export default function May20AutopsyPage() {
               style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-muted)" }}
             >
               Verified from direct Schwab orders and the trading database: NVDA, AMZN, SOFI, and XLB all closed
-              green for a combined realized result of +$13.87.
+              green for a combined realized result of +$13.87. The post-win refinement did not remove safety exits;
+              it clarified how the system reads directional volume before the easy part of a move is gone.
             </figcaption>
           </figure>
         </header>
@@ -208,7 +212,7 @@ export default function May20AutopsyPage() {
               Outcome grade: <strong style={{ color: "#7ee7b8" }}>A-</strong>. System-intent grade:{" "}
               <strong style={{ color: "var(--qr-gold)" }}>B</strong>. Overall grade:{" "}
               <strong style={{ color: "var(--qr-gold)" }}>B+</strong>. The day made money and got flat, but it
-              still did not prove the opening-bell speed standard.
+              still did not prove the opening-lane speed standard.
             </p>
           </section>
 
@@ -223,8 +227,8 @@ export default function May20AutopsyPage() {
           </p>
           <p>
             The architecture was better, but not finished. The first entry did not happen until 7:07 PT. That means
-            the bot was profitable today, but it was not yet the perfect 6:30 PT opening-lane machine the system is
-            being built to become.
+            the bot was profitable today, but it was not yet the 6:30 PT opening-lane machine the system is being
+            built to become. That is why the next change happened after a win, not after a disaster.
           </p>
 
           <h2 className="pt-8 text-3xl font-black tracking-tight">The Trades</h2>
@@ -267,10 +271,64 @@ export default function May20AutopsyPage() {
             remaining shares.
           </p>
 
+          <h2 className="pt-8 text-3xl font-black tracking-tight">Why Change Anything After A Win?</h2>
+          <p>
+            Because the win answered one question but not the whole question. It proved the system could find needles
+            in an intraday bear tape, enter live trades, manage partials, and finish green. It did not prove that the
+            system was reading the early channel fast enough.
+          </p>
+          <p>
+            The specific issue was directional volume pressure, or DVP. DVP is supposed to tell the bot whether the
+            live tape is supporting the direction of the trade. Before the refinement, the system treated too many
+            neutral readings as one big category. That made the bot patient, which helped avoid junk, but it also
+            meant a stock could be moving correctly through the early lane while the 8-bar DVP memory was still not
+            ready to call it fully aligned.
+          </p>
+          <p>
+            That is a subtle but important distinction. Neutral-flat means the tape is not saying enough yet.
+            Neutral-building means the tape is not fully confirmed, but short-horizon pressure is improving while the
+            rest of the setup is already lined up. Those are not the same market condition, and the system should not
+            treat them the same way.
+          </p>
+
+          <section
+            className="rounded-2xl border p-6"
+            style={{ background: "rgba(255,255,255,0.025)", borderColor: "var(--qr-border-highlight)" }}
+          >
+            <h2 className="mb-4 text-2xl font-black tracking-tight">The Post-Win DVP Change</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <h3 className="mb-2 text-lg font-black" style={{ color: "#7ee7b8" }}>
+                  What can pass now
+                </h3>
+                <p style={{ color: "var(--qr-text-muted)" }}>
+                  <code className="font-mono text-sm" style={{ color: "var(--qr-gold)" }}>
+                    DVP_NEUTRAL_BUILDING
+                  </code>{" "}
+                  can be passable only inside the early/proof lane, only after trigger{" "}
+                  <code className="font-mono text-sm" style={{ color: "var(--qr-gold)" }}>
+                    HIT
+                  </code>
+                  , and only when room, flow, daily-open context, and winner/execution-quality confluence agree.
+                </p>
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-black" style={{ color: "#ff8a8a" }}>
+                  What still cannot pass
+                </h3>
+                <p style={{ color: "var(--qr-text-muted)" }}>
+                  Flat neutral DVP, weak DVP, conflicting DVP, adverse DVP, no-room setups, stale misses, pullback
+                  waits, and broker/account safety blocks still remain real blockers.
+                </p>
+              </div>
+            </div>
+          </section>
+
           <h2 className="pt-8 text-3xl font-black tracking-tight">What Still Was Not Good Enough</h2>
           <p>
-            The first problem is timing. A system built around early winner DNA should eventually prove that it can
-            act closer to the opening lane, not only after the first half hour has passed.
+            The first problem is timing. A system built around early winner DNA should prove that it can act closer
+            to the opening lane, not only after the first half hour has passed. The DVP refinement was made for that
+            reason: not to make the bot reckless, but to stop a still-building tape read from acting like a full veto.
           </p>
           <p>
             The second problem is stop churn. The NVDA stop replacement hit a Schwab HTTP 400, then the fallback
@@ -321,8 +379,9 @@ export default function May20AutopsyPage() {
             <h2 className="mb-4 text-3xl font-black tracking-tight">The Point Of The Day</h2>
             <p className="mb-6" style={{ color: "var(--qr-text-muted)" }}>
               Today was not a moonshot day. It was a control day. The system made money, managed exits, proved the
-              broker loop still worked, and ended flat. The next level is not adding more noise. It is making the
-              same clean behavior happen earlier, with clearer operator visibility.
+              broker loop still worked, and ended flat. The next level is not removing safety or chasing every green
+              candle. It is teaching the system to notice when neutral is actually building, so the same clean
+              behavior can happen earlier without opening the front door to weak tape.
             </p>
             <a
               href="https://quantread-ticker-grader.onrender.com"
@@ -338,7 +397,8 @@ export default function May20AutopsyPage() {
           <p className="border-t pt-8 text-sm" style={{ borderColor: "var(--qr-border)", color: "var(--qr-text-dim)" }}>
             Educational note: this article is for general trading education only. It is not financial advice, a
             performance guarantee, or a recommendation to buy or sell any security. Trade figures reflect the May 20
-            live broker and database records reviewed during the autopsy.
+            live broker and database records reviewed during the autopsy. The DVP refinement described here is a
+            system-design note, not a claim that future trades will be profitable.
           </p>
         </div>
       </article>
